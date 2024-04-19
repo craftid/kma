@@ -52,7 +52,7 @@ const Cursor = ({
   children,
 }: AnimatedCursorProviderProps) => {
   const containerRef = useRef(null)
-  const cursorRef = useRef<SVGSVGElement>(null)
+  const cursorRef = useRef(null)
   const elementsRef = useRef(targets)
   const [cursorText, setCursorText] = useState("")
   const [cursorVariant, setCursorVariant] = useState("default")
@@ -168,10 +168,24 @@ const Cursor = ({
     [targets, cursorStyles]
   )
 
+  const handleValue = (value: any) => {
+    switch (typeof value) {
+      case "string":
+        return value
+      case "number":
+        return value.toFixed(2)
+      case "boolean":
+        return value ? "true" : "false"
+      default:
+        return value
+    }
+  }
+
   return (
     <AnimatedCursorContext.Provider value={providerValue}>
       <div id="cursor-scope" ref={containerRef}>
         <motion.div
+          ref={cursorRef}
           variants={variants}
           className="bo pointer-events-none fixed left-0 top-0 z-[100000] rounded-full bg-primary"
           animate={cursorVariant}
@@ -198,7 +212,7 @@ const Cursor = ({
           {/* show li with each keys and their values of mouse  */}
           {Object.entries(mouse).map(([key, value]) => (
             <li key={key}>
-              {key}: {value}
+              {key}: {handleValue(value)}
             </li>
           ))}
         </ul>

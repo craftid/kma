@@ -15,9 +15,11 @@ export default function Home() {
         <p className="text-center text-lg">
           A starter template for <span className="underline">Mayabytes</span>
         </p>
-      </section>
 
-      <Animation />
+        <div className="my-10 flex py-10">
+          <Animation />
+        </div>
+      </section>
     </main>
   )
 }
