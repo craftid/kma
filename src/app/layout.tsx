@@ -1,13 +1,17 @@
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Poppins } from "next/font/google"
 
 import "./globals.css"
 
 import { cn } from "@/lib/utils"
 
+import { AnimatedCursorProvider } from "@/components/animated-cursor-provider"
 import { ThemeProvider } from "@/components/theme-provider"
 
-const inter = Inter({ subsets: ["latin"] })
+const poppins = Poppins({
+  weight: ["400"],
+  style: ["normal", "italic"],
+})
 
 export const metadata: Metadata = {
   title: "Mayabytes starter template",
@@ -21,14 +25,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn(inter.className, "min-h-screen")}>
+      <body className={cn(poppins.className, "min-h-screen")}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <AnimatedCursorProvider>{children}</AnimatedCursorProvider>
         </ThemeProvider>
       </body>
     </html>
