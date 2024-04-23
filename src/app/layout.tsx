@@ -32,7 +32,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AnimatedCursorProvider>{children}</AnimatedCursorProvider>
+          <AnimatedCursorProvider targets={["a"]}>
+            {children}
+          </AnimatedCursorProvider>
         </ThemeProvider>
       </body>
     </html>

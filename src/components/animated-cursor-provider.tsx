@@ -15,17 +15,17 @@ import useMouse from "@/hooks/useMouse"
 
 interface AnimatedCursorProviderProps extends PropsWithChildren {
   targets?: string[]
-  cursorStyles?: CursorStyleProps
+  targetStyles?: TarGetStylesProps
 }
 
-interface CursorStyleProps {
+interface TarGetStylesProps {
   fill: string
   dimensions: number | { width: number; height: number }
 }
 
 interface UseCursorProps {
   targets: string[]
-  cursorStyles: CursorStyleProps
+  targetStyles: TarGetStylesProps
 }
 
 const defaultContext: AnimatedCursorProviderProps = { targets: undefined }
@@ -45,7 +45,7 @@ export const AnimatedCursorProvider = (props: AnimatedCursorProviderProps) => {
 }
 const Cursor = ({
   targets = ["a, button", ".underline"],
-  cursorStyles = {
+  targetStyles = {
     fill: "currentColor",
     dimensions: 20,
   },
@@ -56,76 +56,33 @@ const Cursor = ({
   const elementsRef = useRef(targets)
   const [cursorText, setCursorText] = useState("")
   const [cursorVariant, setCursorVariant] = useState("default")
-
   const mouse = useMouse(containerRef, {
-    fps: 60,
     enterDelay: 100,
     leaveDelay: 100,
+    fps: 60,
   })
-
-  // const mouse = useEvent(containerRef, "mousemove", (event: MouseEvent) => {
-  //   return {
-  //     x: event.clientX,
-  //     y: event.clientY,
-  //   }
-  // })
 
   let mouseXPosition = 0
   let mouseYPosition = 0
 
-  if (mouse.x !== null) {
-    mouseXPosition = mouse.x
+  if (mouse.x !== null && mouse.clientX !== null) {
+    mouseXPosition = mouse.clientX
   }
 
-  if (mouse.y !== null) {
-    mouseYPosition = mouse.y
-  }
-
-  const variants = {
-    default: {
-      opacity: 1,
-      height: 10,
-      width: 10,
-      fontSize: "16px",
-      backgroundColor: "#1e91d6",
-      x: mouseXPosition - 5,
-      y: mouseYPosition - 5,
-      transition: {
-        type: "spring",
-        mass: 0.6,
-      },
-    },
-    // project: {
-    //   opacity: 1,
-    //   // backgroundColor: "rgba(255, 255, 255, 0.6)",
-    //   backgroundColor: "#fff",
-    //   color: "#000",
-    //   height: 80,
-    //   width: 80,
-    //   fontSize: "18px",
-    //   x: mouseXPosition - 32,
-    //   y: mouseYPosition - 32,
-    // },
-    // contact: {
-    //   opacity: 1,
-    //   backgroundColor: "#FFBCBC",
-    //   color: "#000",
-    //   height: 64,
-    //   width: 64,
-    //   fontSize: "32px",
-    //   x: mouseXPosition - 48,
-    //   y: mouseYPosition - 48,
-    // },
+  if (mouse.y !== null && mouse.clientY !== null) {
+    mouseYPosition = mouse.clientY
   }
 
   useEffect(() => {
     const currentElements = elementsRef.current
     const handleMouseEnter = (event: MouseEvent) => {
-      console.log("Mouse entered:", (event.target as HTMLElement).tagName)
+      setCursorText((event.target as HTMLElement).tagName)
+      setCursorVariant("hover")
     }
 
     const handleMouseLeave = (event: MouseEvent) => {
-      console.log("Mouse left:", (event.target as HTMLElement).tagName)
+      setCursorText("")
+      setCursorVariant("default")
     }
 
     currentElements.forEach((selector) => {
@@ -157,6 +114,19 @@ const Cursor = ({
     }
   }, [elementsRef]) // Update the effect when elementsRef changes
 
+  const variants = {
+    default: {
+      x: mouseXPosition - 10,
+      y: mouseYPosition - 10,
+      scale: 1,
+    },
+    hover: {
+      x: mouseXPosition - 10,
+      y: mouseYPosition - 10,
+      scale: 1.5,
+    },
+  }
+
   const spring = {
     type: "spring",
     stiffness: 500,
@@ -164,22 +134,9 @@ const Cursor = ({
   }
 
   const providerValue = useMemo(
-    () => ({ targets, cursorStyles }),
-    [targets, cursorStyles]
+    () => ({ targets, targetStyles }),
+    [targets, targetStyles]
   )
-
-  const handleValue = (value: any) => {
-    switch (typeof value) {
-      case "string":
-        return value
-      case "number":
-        return value.toFixed(2)
-      case "boolean":
-        return value ? "true" : "false"
-      default:
-        return value
-    }
-  }
 
   return (
     <AnimatedCursorContext.Provider value={providerValue}>
@@ -187,42 +144,39 @@ const Cursor = ({
         <motion.div
           ref={cursorRef}
           variants={variants}
-          className="bo pointer-events-none fixed left-0 top-0 z-[100000] rounded-full bg-primary"
           animate={cursorVariant}
+          className="pointer-events-none fixed z-[9999] h-5 w-5 rounded-full bg-rose-500"
           transition={spring}
         >
           <span className="cursorText">{cursorText}</span>
         </motion.div>
+
         {/* <motion.svg
           ref={cursorRef}
-          className="pointer-events-none"
-          width={cursorStyles.dimensions.toString()}
-          height={cursorStyles.dimensions.toString()}
-          viewBox={`0 0 ${cursorStyles.dimensions} ${cursorStyles.dimensions}`}
+          variants={variants}
+          className="cursor pointer-events-none fixed"
+          width={
+            typeof targetStyles.dimensions === "object"
+              ? targetStyles.dimensions.width.toString()
+              : targetStyles.dimensions.toString()
+          }
+          height={
+            typeof targetStyles.dimensions === "object"
+              ? targetStyles.dimensions.width.toString()
+              : targetStyles.dimensions.toString()
+          }
+          viewBox={`0 0 ${typeof targetStyles.dimensions === "object" ? targetStyles.dimensions.width.toString() : targetStyles.dimensions.toString()} ${
+            typeof targetStyles.dimensions === "object"
+              ? targetStyles.dimensions.width.toString()
+              : targetStyles.dimensions.toString()
+          }`}
           animate={cursorVariant}
-          transition={spring}
         >
           <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle">
             {cursorText}
           </text>
           <circle cx="0" cy="0" r="10" fill="currentColor" />
         </motion.svg> */}
-
-        <ul>
-          {/* show li with each keys and their values of mouse  */}
-          {Object.entries(mouse).map(([key, value]) => (
-            <li key={key}>
-              {key}: {handleValue(value)}
-            </li>
-          ))}
-        </ul>
-
-        {/* show current variant and its values */}
-        <ul>
-          <li>{variants.default.x}</li>
-          <li>{variants.default.y}</li>
-        </ul>
-
         {children}
       </div>
     </AnimatedCursorContext.Provider>

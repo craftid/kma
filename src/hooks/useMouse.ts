@@ -5,11 +5,36 @@ import { useReducer, useEffect } from 'react'
 import useEvent from '@hooks/useEvent'
 import { useThrottleCallback } from '@hooks/throttle'
 
+
+
+/**
+ * Custom React hook that tracks the mouse position and provides additional mouse-related information.
+ *
+ * @template T - The type of the target element.
+ * @param {RefObject<T> | T | null} target - The target element or a ref to the target element.
+ * @param {UseMouseOptions} [options={}] - Additional options for configuring the hook.
+ * @returns {
+ * - x: number | null
+ * - y: number | null
+ * - pageX: number | null
+ * - pageY: number | null
+ * - clientX: number | null
+ * - clientY: number | null
+ * - screenX: number | null
+ * - screenY: number | null
+ * - elementWidth: number | null
+ * - elementHeight: number | null
+ * - isOver: boolean
+ * - isDown: boolean
+ * - isTouch: boolean
+ * } 
+ * - The current mouse position and related information.
+ */
 function useMouse<T extends HTMLElement = HTMLElement>(
   target: RefObject<T> | T | null,
   options: UseMouseOptions = {}
 ): MousePosition {
-  const { fps = 120, enterDelay = 0, leaveDelay = 0 } = options
+  const { fps = 30, enterDelay = 0, leaveDelay = 0 } = options
   const [state, dispatch] = useReducer<
     Reducer<UseMouseState, UseMouseAction<T>>
   >(
@@ -138,11 +163,15 @@ function useMouse<T extends HTMLElement = HTMLElement>(
     }
   )
 
-  const onMove = function (event: MouseEvent | TouchEvent) {
-    const element = target && 'current' in target ? target.current : target
-    if (!element) return
-    dispatch({ type: 'mousemove', event, element })
-  }
+  const onMove = useThrottleCallback(
+    (event: MouseEvent | TouchEvent) => {
+      const element = target && 'current' in target ? target.current : target
+      if (!element) return
+      dispatch({ type: 'mousemove', event, element })
+    },
+    fps,
+    true
+  )
   const onTouchMove = useThrottleCallback(
     (event: MouseEvent | TouchEvent) => {
       const element = target && 'current' in target ? target.current : target
