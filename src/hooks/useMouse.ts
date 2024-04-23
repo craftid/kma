@@ -5,31 +5,6 @@ import { useReducer, useEffect } from 'react'
 import useEvent from '@hooks/useEvent'
 import { useThrottleCallback } from '@hooks/throttle'
 
-
-
-/**
- * Custom React hook that tracks the mouse position and provides additional mouse-related information.
- *
- * @template T - The type of the target element.
- * @param {RefObject<T> | T | null} target - The target element or a ref to the target element.
- * @param {UseMouseOptions} [options={}] - Additional options for configuring the hook.
- * @returns {
- * - x: number | null
- * - y: number | null
- * - pageX: number | null
- * - pageY: number | null
- * - clientX: number | null
- * - clientY: number | null
- * - screenX: number | null
- * - screenY: number | null
- * - elementWidth: number | null
- * - elementHeight: number | null
- * - isOver: boolean
- * - isDown: boolean
- * - isTouch: boolean
- * } 
- * - The current mouse position and related information.
- */
 function useMouse<T extends HTMLElement = HTMLElement>(
   target: RefObject<T> | T | null,
   options: UseMouseOptions = {}
