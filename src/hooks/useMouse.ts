@@ -237,7 +237,7 @@ function useMouse<T extends HTMLElement = HTMLElement>(
   return state.context.activeStatus === 'active' ? state.mouse : initialState
 }
 
-const initialState: MousePosition = {
+export const initialState: MousePosition = {
   x: null,
   y: null,
   pageX: null,
