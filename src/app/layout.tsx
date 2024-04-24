@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Poppins } from "next/font/google"
+import localFont from "next/font/local"
 
 import "./globals.css"
 
@@ -11,6 +12,63 @@ import { ThemeProvider } from "@/components/theme-provider"
 const poppins = Poppins({
   weight: ["400"],
   style: ["normal", "italic"],
+  variable: "--font-poppins",
+})
+
+const punta = localFont({
+  src: [
+    {
+      path: "../../public/fonts/punta/Punta Light.ttf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/punta/Punta Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/punta/Punta Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/punta/Punta ExtraBold.ttf",
+      weight: "800",
+      style: "normal",
+    },
+  ],
+  display: "swap",
+  weight: "400",
+  variable: "--font-punta",
+})
+
+const puntaFlat = localFont({
+  src: [
+    {
+      path: "../../public/fonts/punta/Punta Light.ttf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/punta/Punta Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/punta/Punta Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/punta/Punta ExtraBold.ttf",
+      weight: "800",
+      style: "normal",
+    },
+  ],
+  display: "swap",
+  weight: "400",
+  variable: "--font-punta-flat",
 })
 
 export const metadata: Metadata = {
@@ -25,16 +83,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn(poppins.className, "min-h-screen")}>
+      <body
+        className={cn(
+          poppins.variable,
+          punta.variable,
+          puntaFlat.variable,
+          "min-h-screen bg-gradient-to-b from-zinc-200 to-white"
+        )}
+      >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
-          <AnimatedCursorProvider targets={["a"]}>
-            {children}
-          </AnimatedCursorProvider>
+          <AnimatedCursorProvider>{children}</AnimatedCursorProvider>
         </ThemeProvider>
       </body>
     </html>
