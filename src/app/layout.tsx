@@ -33,7 +33,7 @@ const punta = localFont({
       style: "normal",
     },
     {
-      path: "../../public/fonts/punta/Punta ExtraBold.ttf",
+      path: "../../public/fonts/punta/Punta Extrabold.ttf",
       weight: "800",
       style: "normal",
     },
@@ -46,22 +46,22 @@ const punta = localFont({
 const puntaFlat = localFont({
   src: [
     {
-      path: "../../public/fonts/punta/Punta Light.ttf",
+      path: "../../public/fonts/punta/Punta Flat Light.ttf",
       weight: "300",
       style: "normal",
     },
     {
-      path: "../../public/fonts/punta/Punta Regular.ttf",
+      path: "../../public/fonts/punta/Punta Flat Regular.ttf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../../public/fonts/punta/Punta Bold.ttf",
+      path: "../../public/fonts/punta/Punta Flat Bold.ttf",
       weight: "700",
       style: "normal",
     },
     {
-      path: "../../public/fonts/punta/Punta ExtraBold.ttf",
+      path: "../../public/fonts/punta/Punta Flat Extrabold.ttf",
       weight: "800",
       style: "normal",
     },
