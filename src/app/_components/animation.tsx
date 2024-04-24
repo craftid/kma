@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 
 export const Animation = () => (
   <motion.div
-    className="h-20 w-20 bg-rose-400"
+    className="h-20 w-20 bg-orange-300"
     animate={{
       scale: [1, 2, 2, 1, 1],
       rotate: [0, 0, 180, 180, 0],
