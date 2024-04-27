@@ -1,13 +1,9 @@
-"use client"
-
-import type { MousePosition } from "@/hooks/useMouse"
-
-import { useCursor } from "@/components/animated-cursor-provider"
-
 import { Animation } from "@/app/_components/animation"
 
+import CursorStats from "./_components/cursor-stats"
+import OurClients from "./_components/our-clients"
+
 export default function Home() {
-  const { mouse } = useCursor()
   return (
     <main className="flex flex-1 flex-col">
       <section className="flex h-full w-full flex-col items-center justify-center">
@@ -16,15 +12,8 @@ export default function Home() {
           A starter template for <span className="underline">Mayabytes</span>
         </p>
 
-        <ul>
-          {mouse &&
-            Object.keys(mouse).map((key) => (
-              <li key={key}>
-                {key}: {(mouse as any)[key] ?? "null"}
-              </li>
-            ))}
-        </ul>
-
+        <CursorStats />
+        <OurClients />
         <div className="my-10 flex py-10">
           <Animation />
         </div>
