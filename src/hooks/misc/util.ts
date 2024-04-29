@@ -18,6 +18,4 @@ export function off<T extends Window | Document | HTMLElement | EventTarget>(
   }
 }
 
-export const isBrowser = typeof window !== 'undefined';
-
 export const isNavigator = typeof navigator !== 'undefined';

@@ -1,5 +1,4 @@
 import Marquee from "@/components/common/marquee"
-import InteractiveMarquee from "@/components/common/ticker"
 import NumberedCarousel from "@/components/landing/numbered-carousel"
 
 import { Animation } from "@/app/_components/animation"

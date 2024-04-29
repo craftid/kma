@@ -1,7 +1,7 @@
 "use client"
 
-import React, { use, useEffect, useRef } from "react"
-import { motion } from "framer-motion"
+import React, { useEffect, useRef } from "react"
+import { isBrowser, motion } from "framer-motion"
 
 import useEvent from "@/hooks/useEvent"
 
@@ -25,7 +25,7 @@ const Marquee = ({
     factor: 0.2,
   }
 
-  useEvent(window, "scroll", () => {
+  useEvent(isBrowser ? window : null, "scroll", () => {
     let direction = window.scrollY || document.documentElement.scrollTop
     if (direction > scrollTopRef.current) {
       directionRef.current = true

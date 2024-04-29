@@ -12,6 +12,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 const poppins = Poppins({
   weight: ["400"],
   style: ["normal", "italic"],
+  subsets: ["latin"],
   variable: "--font-poppins",
 })
 
