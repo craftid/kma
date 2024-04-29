@@ -55,7 +55,10 @@ const Header = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
             height={58}
           />
         </Link>
-        <NavigationMenu>
+        <NavigationMenu
+          className="hidden md:block
+        "
+        >
           <NavigationMenuList
             className={cn(
               "first:*pl-0 last:*pr-0 divide-x divide-slate-300 *:px-4"

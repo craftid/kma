@@ -5,6 +5,8 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import ScrollToTop from "@/components/ui/scroll-to-top"
 
+import Marquee from "./common/keep-in-touch-marquee"
+
 export default function Footer(
   props: Readonly<{
     className?: string
@@ -13,33 +15,14 @@ export default function Footer(
   return (
     <footer
       className={cn(
-        "relative flex flex-col items-stretch justify-center overflow-x-hidden overflow-y-visible pt-14",
+        "relative flex flex-col items-stretch justify-center overflow-x-hidden overflow-y-visible pt-24",
         props.className
       )}
     >
-      <div className="-mb-14 flex gap-4 whitespace-nowrap">
-        <span className="-ml-3 inline-block whitespace-nowrap align-bottom text-[10rem] font-extrabold  uppercase leading-none">
-          Keep in touch
-        </span>
-        <div className="self-center">
-          <Button
-            className={cn(
-              "flex h-24 w-24 flex-col rounded-full border border-orange-500 uppercase hover:border-orange-600"
-            )}
-            type="button"
-            variant="glass"
-          >
-            <MoveUpRight />
-            <span>Let&apos;s Talk</span>
-          </Button>
-        </div>
-        <span className="inline-block whitespace-nowrap align-bottom text-[10rem] font-extrabold  uppercase leading-none">
-          Keep in touch
-        </span>
-      </div>
+      <Marquee />
       <div className=" bg-zinc-950 pt-28 text-white">
         <div className="container flex flex-col">
-          <div className="grid grid-cols-2 gap-28">
+          <div className="grid gap-28 lg:grid-cols-2">
             <div className="border-b border-neutral-500 pb-4">
               <h2 className="text-2xl font-extrabold uppercase">
                 Emails you’ll actually want to read
