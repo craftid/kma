@@ -1,11 +1,11 @@
 "use client"
 
-import { useRef } from "react"
+import { forwardRef, RefObject, useRef, type HTMLAttributes } from "react"
 import Link from "next/link"
+import { motion, useInView } from "framer-motion"
 import { MoveUpRight } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import useEvent from "@/hooks/useEvent"
 
 import { useCursor } from "../animated-cursor-provider"
 import { Button } from "../ui/button"
@@ -42,8 +42,7 @@ const portfolioItems = [
 ]
 
 export default function Portfolio(props: { children?: React.ReactNode }) {
-  const { setCursorVariant, setCurrentBounds } = useCursor()
-
+  const ref = useRef(null)
   return (
     <div className="flex flex-col">
       <div className="py-6">
@@ -58,59 +57,115 @@ export default function Portfolio(props: { children?: React.ReactNode }) {
         </div>
         <div className="flex-grow">
           {portfolioItems.map((item, index) => (
-            <div
-              key={index}
-              className={cn(
-                index % 2 === 0 ? "flex-row" : "flex-row-reverse",
-                "group flex border-b border-neutral-300"
-              )}
-            >
-              <div className="basis-1/2 p-6">
-                <img src={item.imgUrl} alt={item.title} />
-              </div>
-              <div className="flex basis-1/2 flex-col justify-between p-6">
-                <div className="flex">
-                  <div className="flex flex-grow">
-                    <div className="max-w-72 ">
-                      <h3 className="text-2xl font-extrabold uppercase">
-                        {item.title}
-                      </h3>
-                    </div>
-                  </div>
-                  <div className="-mt-3 ml-4 flex-grow-0">
-                    <Button
-                      asChild
-                      variant="ghost"
-                      key={index}
-                      onMouseEnter={(e) => {
-                        if (!setCursorVariant || !setCurrentBounds) return
-                        setCurrentBounds(
-                          e.currentTarget.getBoundingClientRect().toJSON()
-                        )
-                        setCursorVariant("link")
-                      }}
-                      onMouseLeave={() => {
-                        if (!setCursorVariant) return
-                        setCursorVariant("default")
-                      }}
-                    >
-                      <Link
-                        href={item.url}
-                        className="flex h-14 w-14 items-center gap-2 transition-transform duration-300 hover:rotate-45 hover:bg-transparent hover:text-primary"
-                      >
-                        <MoveUpRight size={34} />
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
-                <div className="border-t border-neutral-300 pt-6 font-poppins text-sm text-neutral-500">
-                  <p>{item.description}</p>
-                </div>
-              </div>
-            </div>
+            <Item ref={ref} key={index} index={index} item={item} />
           ))}
         </div>
       </div>
     </div>
   )
 }
+
+interface PortfolioItem {
+  title: string
+  description: string
+  imgUrl: string
+  url: string
+}
+
+interface ItemProps extends HTMLAttributes<HTMLDivElement> {
+  index: number
+  item: PortfolioItem
+}
+
+const Item = forwardRef<HTMLDivElement, ItemProps>(
+  ({ children, index, item, ...props }, ref) => {
+    const { setCursorVariant, setCurrentBounds } = useCursor()
+
+    const inViewRef = useRef(null)
+    const isInView = useInView(inViewRef as RefObject<Element>, {
+      margin: "-30%",
+      once: true,
+    })
+
+    return (
+      <div
+        ref={inViewRef}
+        {...props}
+        key={index}
+        className={cn(
+          index % 2 === 0 ? "flex-row" : "flex-row-reverse",
+          "group flex divide-x divide-neutral-300 border-b border-neutral-300"
+        )}
+      >
+        <motion.div
+          initial={{ opacity: 0, y: index % 2 === 0 ? -100 : 100 }}
+          animate={{
+            opacity: isInView ? 1 : 0,
+            y: isInView ? 0 : index % 2 === 0 ? -100 : 100,
+          }}
+          transition={{ duration: 0.5 }}
+          className="basis-1/2 p-6"
+        >
+          <img src={item.imgUrl} alt={item.title} />
+        </motion.div>
+        <motion.div className="flex basis-1/2 flex-col justify-between p-6">
+          <div className="flex">
+            <div className="flex flex-grow flex-col">
+              <i className="mb-4 h-4 w-4 rounded-full bg-orange-500"></i>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: isInView ? 1 : 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="max-w-72 "
+              >
+                <h3 className="text-2xl font-extrabold uppercase">
+                  {item.title}
+                </h3>
+              </motion.div>
+            </div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isInView ? 1 : 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="-mt-3 ml-4 flex-grow-0"
+            >
+              <Button
+                asChild
+                variant="ghost"
+                key={index}
+                onMouseEnter={(e) => {
+                  if (!setCursorVariant || !setCurrentBounds) return
+                  setCurrentBounds(
+                    e.currentTarget.getBoundingClientRect().toJSON()
+                  )
+                  setCursorVariant("link")
+                }}
+                onMouseLeave={() => {
+                  if (!setCursorVariant) return
+                  setCursorVariant("default")
+                }}
+              >
+                <Link
+                  href={item.url}
+                  className="flex h-14 w-14 items-center gap-2 transition-transform duration-300 hover:rotate-45 hover:bg-transparent hover:text-primary"
+                >
+                  <MoveUpRight size={34} />
+                </Link>
+              </Button>
+            </motion.div>
+          </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isInView ? 1 : 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="border-t border-neutral-300 pt-6 font-poppins text-sm text-neutral-500"
+          >
+            <p>{item.description}</p>
+          </motion.div>
+        </motion.div>
+      </div>
+    )
+  }
+)
+
+Item.displayName = "PortfolioItem"
