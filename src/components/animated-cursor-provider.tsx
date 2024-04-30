@@ -4,17 +4,19 @@ import type { PropsWithChildren } from "react"
 import { createContext, useContext, useMemo, useRef, useState } from "react"
 import { LayoutGroup, motion } from "framer-motion"
 
-import useEvent from "@/hooks/useEvent"
+import { cn } from "@/lib/utils"
 import useMouse, { initialState } from "@/hooks/useMouse"
 
 interface AnimatedCursorProviderProps extends PropsWithChildren {
   setCursorText?: (text: string) => void
   setCursorVariant?: (variant: string) => void
+  setCurrentBounds?: (bounds: DOMRect) => void
   mouse?: ReturnType<typeof useMouse>
 }
 
 interface UseCursorProps {
   setCursorText?: (text: string) => void
+  setCurrentBounds?: (bounds: DOMRect) => void
   setCursorVariant?: (variant: string) => void
   mouse: ReturnType<typeof useMouse>
 }
@@ -44,6 +46,17 @@ const Cursor = ({ children }: AnimatedCursorProviderProps) => {
   const [cursorText, setCursorText] = useState("")
   const [cursorVariant, setCursorVariant] = useState("default")
 
+  const [currentBounds, setCurrentBounds] = useState({
+    bottom: 0,
+    height: 0,
+    left: 0,
+    right: 0,
+    top: 0,
+    width: 0,
+    x: 0,
+    y: 0,
+  })
+
   const mouse = useMouse(containerRef, {
     enterDelay: 100,
     leaveDelay: 100,
@@ -61,25 +74,34 @@ const Cursor = ({ children }: AnimatedCursorProviderProps) => {
     mouseYPosition = mouse.clientY
   }
 
-  useEvent(containerRef, "mouseenter", () => {
-    setCursorVariant("hover")
-  })
+  // useEvent(containerRef, "mouseenter", () => {
+  //   setCursorVariant("hover")
+  // })
 
-  useEvent(containerRef, "mouseleave", () => {
-    setCursorText("")
-    setCursorVariant("default")
-  })
+  // useEvent(containerRef, "mouseleave", () => {
+  //   setCursorText("")
+  //   setCursorVariant("default")
+  // })
 
   const variants = {
     default: {
-      x: mouseXPosition - 4,
-      y: mouseYPosition - 4,
+      x: mouseXPosition,
+      y: mouseYPosition,
       scale: 1,
+      borderWidth: "0px",
     },
     hover: {
-      x: mouseXPosition - 4,
-      y: mouseYPosition - 4,
+      x: mouseXPosition,
+      y: mouseYPosition,
       scale: 1.5,
+    },
+    link: {
+      x: currentBounds.x,
+      y: currentBounds.y,
+      width: currentBounds.width,
+      height: currentBounds.height,
+      borderWidth: "1px",
+      backgroundColor: "rgba(255, 255, 255, 0)",
     },
   }
 
@@ -90,8 +112,8 @@ const Cursor = ({ children }: AnimatedCursorProviderProps) => {
   }
 
   const providerValue = useMemo(
-    () => ({ setCursorText, setCursorVariant, mouse }),
-    [setCursorText, setCursorVariant, mouse]
+    () => ({ setCursorText, setCursorVariant, setCurrentBounds, mouse }),
+    [setCursorText, setCursorVariant, setCurrentBounds, mouse]
   )
 
   return (
@@ -102,7 +124,12 @@ const Cursor = ({ children }: AnimatedCursorProviderProps) => {
             ref={cursorRef}
             variants={variants}
             animate={cursorVariant}
-            className="pointer-events-none fixed z-[9999] flex h-2 w-2 items-stretch justify-center rounded-full bg-orange-500 text-center text-xs font-bold leading-5 text-white"
+            className={cn(
+              "pointer-events-none fixed z-[9999] flex h-2 w-2",
+              "border-0 border-orange-500 bg-orange-500",
+              "text-center text-xs font-bold leading-5 text-white",
+              "origin-center transform-gpu items-stretch justify-center rounded-full "
+            )}
             transition={spring}
             layout
             layoutId="cursor"
