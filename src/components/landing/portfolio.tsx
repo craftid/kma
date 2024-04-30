@@ -69,13 +69,15 @@ export default function Portfolio(props: { children?: React.ReactNode }) {
                 <img src={item.imgUrl} alt={item.title} />
               </div>
               <div className="flex basis-1/2 flex-col justify-between p-6">
-                <div className="flex whitespace-nowrap">
-                  <div className="flex-grow">
-                    <h3 className="text-2xl font-extrabold uppercase">
-                      {item.title}
-                    </h3>
+                <div className="flex">
+                  <div className="flex flex-grow">
+                    <div className="max-w-72 ">
+                      <h3 className="text-2xl font-extrabold uppercase">
+                        {item.title}
+                      </h3>
+                    </div>
                   </div>
-                  <div className="flex-grow-0">
+                  <div className="-mt-3 ml-4 flex-grow-0">
                     <Button
                       asChild
                       variant="ghost"
