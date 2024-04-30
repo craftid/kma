@@ -37,10 +37,6 @@ const Marquee = ({
     scrollTopRef.current = direction <= 0 ? 0 : direction
   })
 
-  const lerpFunc = (current: number, target: number, factor: number) => {
-    lerp.current = current * (1 - factor) + target * factor
-  }
-
   const goForward = () => {
     lerp.target += speed
     if (lerp.target > metric) {
@@ -60,7 +56,7 @@ const Marquee = ({
   const update = () => {
     if (elementRef.current === null) return
     directionRef.current ? goForward() : goBackwards()
-    lerpFunc(lerp.current, lerp.target, lerp.factor)
+    lerp.current = lerp.current * (1 - lerp.factor) + lerp.target * lerp.factor
     elementRef.current.style.transform = `translateX(${lerp.current}%)`
   }
 
@@ -82,7 +78,7 @@ const Marquee = ({
   useEffect(() => {
     if (isHovered.current) return
     renderLoop()
-  })
+  }, [])
 
   // if children width is less than 100% repeat children
   // if children width is greater than 100% do not repeat children
@@ -90,12 +86,10 @@ const Marquee = ({
   const repeatChildrenIfNeeded = (
     children: React.ReactNode
   ): React.ReactNode => {
-    if (elementRef.current === null) return children
+    const containerWidth = elementRef.current?.offsetWidth
+    const childrenWidth = elementRef.current?.scrollWidth
 
-    const containerWidth = elementRef.current.offsetWidth
-    const childrenWidth = elementRef.current.scrollWidth
-
-    if (childrenWidth <= containerWidth) {
+    if (childrenWidth && containerWidth && childrenWidth <= containerWidth) {
       const repeatCount = Math.ceil(containerWidth / childrenWidth) + 1
       console.log(
         repeatCount,
