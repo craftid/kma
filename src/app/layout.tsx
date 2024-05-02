@@ -73,8 +73,8 @@ const puntaFlat = localFont({
 })
 
 export const metadata: Metadata = {
-  title: "Mayabytes starter template",
-  description: "this is a starter template for mayabytes",
+  title: "KM&A Landing page",
+  description: "using nextjs, tailwindcss, framer-motion, and more",
 }
 
 export default function RootLayout({

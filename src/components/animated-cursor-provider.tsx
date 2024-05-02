@@ -29,7 +29,12 @@ const defaultContext: AnimatedCursorProviderProps = {
 const AnimatedCursorContext = createContext<UseCursorProps | undefined>(
   undefined
 )
-
+/**
+ * @example
+ * ```tsx
+ * const { setCursorText, setCursorVariant, setCurrentBounds, mouse } = useCursor();
+ * ```
+ */
 export const useCursor = () =>
   useContext(AnimatedCursorContext) ?? defaultContext
 
