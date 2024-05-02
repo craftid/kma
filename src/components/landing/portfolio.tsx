@@ -89,9 +89,8 @@ const Item = forwardRef<HTMLDivElement, ItemProps>(
 
     return (
       <div
-        ref={inViewRef}
         {...props}
-        key={index}
+        ref={ref}
         className={cn(
           index % 2 === 0 ? "flex-row" : "flex-row-reverse",
           "group flex divide-x divide-neutral-300 border-b border-neutral-300"
@@ -108,7 +107,11 @@ const Item = forwardRef<HTMLDivElement, ItemProps>(
         >
           <img src={item.imgUrl} alt={item.title} />
         </motion.div>
-        <motion.div className="flex basis-1/2 flex-col justify-between p-6">
+        <motion.div
+          key={index + item.title}
+          ref={inViewRef}
+          className="flex basis-1/2 flex-col justify-between p-6"
+        >
           <div className="flex">
             <div className="flex flex-grow flex-col">
               <i className="mb-4 h-4 w-4 rounded-full bg-orange-500"></i>

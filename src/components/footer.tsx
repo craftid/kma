@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import ScrollToTop from "@/components/ui/scroll-to-top"
 
-import Marquee from "./common/keep-in-touch-marquee"
+import Marquee from "./common/marquee"
 
 export default function Footer(
   props: Readonly<{
@@ -19,7 +19,25 @@ export default function Footer(
         props.className
       )}
     >
-      <Marquee />
+      <Marquee baseVelocity={1.2} className="-mb-12">
+        <div className="flex whitespace-nowrap">
+          <span className="inline-block whitespace-nowrap align-bottom text-[10rem] font-extrabold  uppercase leading-none">
+            Keep in touch
+          </span>
+          <div className="self-center">
+            <Button
+              className={cn(
+                "flex h-24 w-24 flex-col rounded-full border border-orange-500 uppercase hover:border-orange-600"
+              )}
+              type="button"
+              variant="glass"
+            >
+              <MoveUpRight />
+              <span>Let&apos;s Talk</span>
+            </Button>
+          </div>
+        </div>
+      </Marquee>
       <div className=" bg-zinc-950 pt-28 text-white">
         <div className="container flex flex-col">
           <div className="grid gap-28 lg:grid-cols-2">

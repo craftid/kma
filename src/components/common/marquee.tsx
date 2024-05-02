@@ -1,121 +1,113 @@
 "use client"
 
-import React, { useEffect, useRef } from "react"
-import { isBrowser, motion } from "framer-motion"
+import React, { useEffect, useRef, useState } from "react"
+import { wrap } from "@motionone/utils"
+import {
+  motion,
+  useAnimationFrame,
+  useMotionValue,
+  useScroll,
+  useSpring,
+  useTransform,
+  useVelocity,
+} from "framer-motion"
 
-import useEvent from "@/hooks/useEvent"
+import { cn } from "@/lib/utils"
 
-const Marquee = ({
-  children,
-  speed = 0.5,
-}: {
+interface ParallaxProps {
   children: React.ReactNode
-  speed?: number
-}) => {
-  const elementRef = useRef<HTMLDivElement>(null)
-  const currentTranslation = 0
-  const directionRef = useRef(true)
-  const scrollTopRef = useRef(0)
-  const metric = 100
-  const isHovered = useRef(false)
+  baseVelocity: number
+  props?: any
+  className?: string
+  wrapMin?: number
+  wrapMax?: number
+  repeatChildrenCount?: number
+}
 
-  const lerp = {
-    current: currentTranslation,
-    target: currentTranslation,
-    factor: 0.2,
-  }
-
-  useEvent(isBrowser ? window : null, "scroll", () => {
-    let direction = window.scrollY || document.documentElement.scrollTop
-    if (direction > scrollTopRef.current) {
-      directionRef.current = true
-      lerp.target += speed * 5
-    } else {
-      directionRef.current = false
-      lerp.target -= speed * 5
-    }
-    scrollTopRef.current = direction <= 0 ? 0 : direction
+function Marquee({
+  children,
+  baseVelocity = 100,
+  props,
+  wrapMin = -20,
+  wrapMax = -45,
+  className,
+}: ParallaxProps) {
+  const baseX = useMotionValue(0)
+  const { scrollY } = useScroll()
+  const scrollVelocity = useVelocity(scrollY)
+  const smoothVelocity = useSpring(scrollVelocity, {
+    damping: 50,
+    stiffness: 400,
+  })
+  const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
+    clamp: false,
   })
 
-  const goForward = () => {
-    lerp.target += speed
-    if (lerp.target > metric) {
-      lerp.current -= metric * 2
-      lerp.target -= metric * 2
+  const [isHovered, setIsHovered] = useState(false)
+
+  const containerRef = useRef<HTMLDivElement>(null)
+  const childRef = useRef<HTMLDivElement>(null)
+
+  const [repeatChildrenCount, setRepeatChildrenCount] = useState(1)
+
+  const calculatedChildren = Array.from({
+    length: repeatChildrenCount,
+  }).map((_, i) =>
+    React.cloneElement(children as React.ReactElement, { key: i })
+  )
+
+  /**
+   * This is a magic wrapping for the length of the text - you
+   * have to replace for wrapping that works for you or dynamically
+   * calculate
+   */
+  const x = useTransform(baseX, (v) => `${wrap(wrapMin, wrapMax, v)}%`)
+
+  const directionFactor = useRef<number>(1)
+  useAnimationFrame((t, delta) => {
+    if (isHovered) return
+    let moveBy = directionFactor.current * baseVelocity * (delta / 1000)
+
+    /**
+     * This is what changes the direction of the scroll once we
+     * switch scrolling directions.
+     */
+    if (velocityFactor.get() < 0) {
+      directionFactor.current = -1
+    } else if (velocityFactor.get() > 0) {
+      directionFactor.current = 1
     }
-  }
 
-  const goBackwards = () => {
-    lerp.target -= speed
-    if (lerp.target < -metric) {
-      lerp.current -= -metric * 2
-      lerp.target -= -metric * 2
-    }
-  }
+    moveBy += directionFactor.current * moveBy * velocityFactor.get()
 
-  const update = () => {
-    if (elementRef.current === null) return
-    directionRef.current ? goForward() : goBackwards()
-    lerp.current = lerp.current * (1 - lerp.factor) + lerp.target * lerp.factor
-    elementRef.current.style.transform = `translateX(${lerp.current}%)`
-  }
-
-  const renderLoop = () => {
-    update()
-    requestAnimationFrame(renderLoop)
-  }
-
-  const handleMouseEnter = () => {
-    isHovered.current = true
-    lerp.factor = 0
-  }
-
-  const handleMouseLeave = () => {
-    isHovered.current = false
-    lerp.factor = 0.2
-  }
+    baseX.set(baseX.get() + moveBy)
+  })
 
   useEffect(() => {
-    if (isHovered.current) return
-    renderLoop()
+    const containerWidth = containerRef.current?.clientWidth || 0
+    const childWidth = childRef.current?.scrollWidth || 0
+    const repeatCount = Math.ceil(containerWidth / childWidth) + 2
+    setRepeatChildrenCount(repeatCount)
   }, [])
-
-  // if children width is less than 100% repeat children
-  // if children width is greater than 100% do not repeat children
-
-  const repeatChildrenIfNeeded = (
-    children: React.ReactNode
-  ): React.ReactNode => {
-    const containerWidth = elementRef.current?.offsetWidth
-    const childrenWidth = elementRef.current?.scrollWidth
-
-    if (childrenWidth && containerWidth && childrenWidth <= containerWidth) {
-      const repeatCount = Math.ceil(containerWidth / childrenWidth) + 1
-      console.log(
-        repeatCount,
-        Math.ceil(containerWidth / childrenWidth),
-        childrenWidth,
-        containerWidth
-      )
-      const repeatedChildren = Array.from({ length: repeatCount }).map(
-        (_, index) => <React.Fragment key={index}>{children}</React.Fragment>
-      )
-
-      return repeatedChildren
-    }
-
-    return children
-  }
-
   return (
-    <motion.div
-      ref={elementRef}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      className="flex"
+    <div
+      className={cn(
+        "flex flex-nowrap overflow-hidden whitespace-nowrap",
+        className
+      )}
+      {...props}
+      ref={containerRef}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      {repeatChildrenIfNeeded(children)}
-    </motion.div>
+      <motion.div
+        className="flex flex-nowrap whitespace-nowrap"
+        style={{ x }}
+        ref={childRef}
+      >
+        {calculatedChildren}
+      </motion.div>
+    </div>
   )
 }
 
