@@ -4,7 +4,17 @@ import type { RefObject, Reducer } from 'react'
 import { useReducer, useEffect } from 'react'
 import useEvent from '@hooks/useEvent'
 import { useThrottleCallback } from '@hooks/throttle'
-
+/**
+ * useMouse hook
+ * @param target
+ * @param options
+ * @returns MousePosition
+ * 
+ * @example
+ * ```tsx
+ * const  { x, y, pageX, pageY, clientX, clientY, screenX, screenY, elementWidth, elementHeight, isOver, isDown, isTouch } = useMouse();
+ * ```
+ */
 function useMouse<T extends HTMLElement = HTMLElement>(
   target: RefObject<T> | T | null,
   options: UseMouseOptions = {}
