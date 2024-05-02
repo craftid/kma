@@ -50,9 +50,49 @@ export default function Portfolio(props: { children?: React.ReactNode }) {
       </div>
       <div className="flex border-t border-neutral-300">
         <div className="basis-1/4 p-4 md:min-w-80">
-          <div>
-            <h3>project 1</h3>
-            <p>description</p>
+          <div className="flex flex-col gap-4">
+            <ul className="flex flex-col gap-2">
+              <li>
+                <Link
+                  className="font-bold uppercase text-neutral-400 hover:text-orange-500"
+                  href="/portfolio"
+                >
+                  All
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="font-bold uppercase text-neutral-400 hover:text-orange-500"
+                  href="/portfolio"
+                >
+                  Branding
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="font-bold uppercase text-neutral-400 hover:text-orange-500"
+                  href="/portfolio"
+                >
+                  Design
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="font-bold uppercase text-neutral-400 hover:text-orange-500"
+                  href="/portfolio"
+                >
+                  Development
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="font-bold uppercase text-neutral-400 hover:text-orange-500"
+                  href="/portfolio"
+                >
+                  Marketing
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
         <div className="flex-grow">

@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button"
 
 export default function Hero() {
   return (
-    <div className="relative">
+    <div className="relative overflow-hidden">
       <div
         className={cn(
           "absolute z-0 h-full w-full object-cover",
