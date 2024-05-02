@@ -1,3 +1,8 @@
+"use client"
+
+import { useEffect, useState } from "react"
+import { motion, useAnimate } from "framer-motion"
+
 import { cn } from "@/lib/utils"
 
 export default function Hero() {
@@ -78,38 +83,42 @@ const DecorativeText = ({
   text: string
   direction: "top" | "bottom"
 }) => {
+  const [scope, animate] = useAnimate()
+
+  useEffect(() => {})
   return (
     <div
+      ref={scope}
       className={cn(
-        "relative inline-block text-9xl font-extrabold uppercase",
+        "relative inline-flex items-center text-9xl font-extrabold uppercase leading-none",
         direction === "top" ? "pt-14" : "pb-14"
       )}
     >
       <div
         className={cn(
-          "absolute left-0 inline-block h-2 overflow-hidden  text-neutral-400/20",
-          direction === "top" ? "top-2 align-top" : "bottom-2 align-bottom "
+          "absolute left-0 inline-flex h-3 overflow-hidden text-neutral-400/20",
+          direction === "top" ? "top-0 align-text-top" : "bottom-0 items-end"
         )}
       >
-        {text}
+        <span className="-mb-8 ">{text}</span>
       </div>
       <div
         className={cn(
-          "absolute left-0 inline-block h-3 overflow-hidden  text-neutral-400/30",
-          direction === "top" ? "top-5 align-top" : "bottom-5 align-bottom"
+          "absolute left-0 inline-flex h-4 overflow-hidden text-neutral-400/30",
+          direction === "top" ? "top-4 align-text-top" : "bottom-4 items-end"
         )}
       >
-        <span> {text}</span>
+        <span className="-mb-8 ">{text}</span>
       </div>
       <div
         className={cn(
-          "absolute left-0 inline-block h-4 overflow-hidden  text-neutral-400/50",
-          direction === "top" ? "top-9 align-top" : "bottom-9 align-bottom"
+          "absolute left-0 inline-flex h-5 overflow-hidden text-neutral-400/50",
+          direction === "top" ? "top-9 align-text-top" : "bottom-9 items-end"
         )}
       >
-        <span> {text}</span>
+        <span className="-mb-8 ">{text}</span>
       </div>
-      <p>{text}</p>
+      <p className="-mb-7">{text}</p>
     </div>
   )
 }
