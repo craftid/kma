@@ -5,7 +5,6 @@ import Portfolio from "@/components/landing/portfolio"
 
 import { Animation } from "@/app/_components/animation"
 
-import CursorStats from "./_components/cursor-stats"
 import Hero from "./_components/hero"
 import OurClients from "./_components/our-clients"
 
@@ -14,7 +13,6 @@ export default function Home() {
     <main className="flex flex-1 flex-col">
       <section className="flex h-full w-full flex-col items-center">
         <Hero />
-        <CursorStats />
         <OurClients />
         <div className="my-10 flex py-10">
           <Animation />

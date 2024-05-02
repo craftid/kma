@@ -1,9 +1,8 @@
-"use client"
-
-import { useEffect, useState } from "react"
-import { motion, useAnimate } from "framer-motion"
+import { MoveUpRight } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+
+import { Button } from "@/components/ui/button"
 
 export default function Hero() {
   return (
@@ -59,17 +58,37 @@ export default function Hero() {
           </filter>
         </svg>
       </div>
-      <div className="container relative z-10 flex items-center justify-center py-16">
-        <div className="text-center">
-          <DecorativeText text="Strategy" direction="top" />
-          <DecorativeText text="Redefined" direction="bottom" />
-          <p className="mt-4 text-xl text-white">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-          <button className="mt-8 rounded-lg bg-primary px-8 py-4 text-primary-foreground">
-            Get Started
-          </button>
+      <div className="container relative z-10 max-w-screen-xl py-16">
+        <div className="flex flex-col items-center justify-center">
+          <div className="flex  flex-shrink-0 flex-col">
+            <div className="flex ">
+              <DecorativeText text="Strategy" direction="top" />
+              <div className="flex flex-grow-0 basis-3/12 items-end">
+                <Button
+                  className={cn(
+                    "relative z-10 -mb-4 flex h-36 w-36 flex-col rounded-full border border-orange-500 uppercase hover:border-orange-600"
+                  )}
+                  type="button"
+                  variant="glass"
+                >
+                  <MoveUpRight />
+                  <span>See HOW</span>
+                </Button>
+              </div>
+            </div>
+            <div className="flex">
+              <div className="flex-grow-0 basis-3/12">
+                <p className="mt-4 text-xl font-medium uppercase text-neutral-500">
+                  From experiential events to creative excellence,{" "}
+                  <span className="text-orange-500">
+                    our strategic approach
+                  </span>{" "}
+                  leads to winning results all achieved in a collaborative way
+                </p>
+              </div>
+              <DecorativeText text="Redefined" direction="bottom" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -83,14 +102,10 @@ const DecorativeText = ({
   text: string
   direction: "top" | "bottom"
 }) => {
-  const [scope, animate] = useAnimate()
-
-  useEffect(() => {})
   return (
     <div
-      ref={scope}
       className={cn(
-        "relative inline-flex items-center text-9xl font-extrabold uppercase leading-none",
+        "relative inline-flex items-center text-[164px] font-bold uppercase leading-none",
         direction === "top" ? "pt-14" : "pb-14"
       )}
     >
@@ -100,7 +115,7 @@ const DecorativeText = ({
           direction === "top" ? "top-0 align-text-top" : "bottom-0 items-end"
         )}
       >
-        <span className="-mb-8 ">{text}</span>
+        <span className="-mb-12 ">{text}</span>
       </div>
       <div
         className={cn(
@@ -108,7 +123,7 @@ const DecorativeText = ({
           direction === "top" ? "top-4 align-text-top" : "bottom-4 items-end"
         )}
       >
-        <span className="-mb-8 ">{text}</span>
+        <span className="-mb-12 ">{text}</span>
       </div>
       <div
         className={cn(
@@ -116,9 +131,9 @@ const DecorativeText = ({
           direction === "top" ? "top-9 align-text-top" : "bottom-9 items-end"
         )}
       >
-        <span className="-mb-8 ">{text}</span>
+        <span className="-mb-12 ">{text}</span>
       </div>
-      <p className="-mb-7">{text}</p>
+      <p className="-mb-10">{text}</p>
     </div>
   )
 }
