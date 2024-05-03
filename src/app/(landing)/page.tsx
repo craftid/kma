@@ -28,17 +28,21 @@ export default function Home() {
           </div>
         </Marquee>
       </div>
-      <div className="container pb-14">
+      <div className="container pb-14" id="services">
         <NumberedCarousel />
       </div>
-      <OurClients />
-      <div className="container">
+      <div className="w-full" id="clients">
+        <OurClients />
+      </div>
+      <div className="container" id="portfolio">
         <Portfolio />
       </div>
-      <div className="container my-6">
+      <div className="container my-6" id="mission">
         <MissionStatement />
       </div>
-      <AwardCards />
+      <div className="container" id="awards">
+        <AwardCards />
+      </div>
     </main>
   )
 }

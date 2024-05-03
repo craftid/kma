@@ -130,7 +130,7 @@ const Cursor = ({ children }: AnimatedCursorProviderProps) => {
             variants={variants}
             animate={cursorVariant}
             className={cn(
-              "pointer-events-none fixed z-[9999] flex h-2 w-2",
+              "pointer-events-none fixed z-[9999] hidden h-2 w-2 md:flex",
               "border-0 border-orange-500 bg-orange-500",
               "text-center text-xs font-bold leading-5 text-white",
               "origin-center transform-gpu items-stretch justify-center rounded-full "

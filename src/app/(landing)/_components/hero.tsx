@@ -77,12 +77,12 @@ export default function Hero() {
           </filter>
         </motion.svg>
       </div>
-      <div className="container relative z-10 flex max-w-screen-xl flex-col items-center justify-center py-14 lg:py-28">
+      <div className="container relative z-10 flex max-w-screen-xl flex-col items-center justify-center py-8 md:py-28">
         <div className="flex items-center justify-center">
           <div className="flex flex-col">
             <div className="flex">
               <DecorativeText text="Strategy" direction="top" />
-              <div className="hidden flex-grow-0 basis-72  items-end md:flex">
+              <div className="hidden flex-grow-0 items-end  md:flex md:basis-72">
                 <Button
                   className={cn(
                     "relative z-10 -mb-4 flex h-20 w-20 flex-col rounded-full border  border-orange-500 text-sm uppercase hover:border-orange-600 md:h-36 md:w-36 xl:-mb-4"
@@ -97,7 +97,7 @@ export default function Hero() {
             </div>
             <div className="flex flex-col md:flex-row-reverse">
               <DecorativeText text="Redefined" direction="bottom" />
-              <div className="flex-grow-0 basis-72">
+              <div className="flex-grow-0 md:basis-72">
                 <p className="mt-4 font-medium uppercase text-neutral-500 lg:text-xl">
                   From experiential events to creative excellence,{" "}
                   <span className="text-orange-500">
@@ -124,35 +124,41 @@ const DecorativeText = ({
   return (
     <div
       className={cn(
-        "relative inline-flex items-center text-4xl font-bold uppercase leading-none lg:text-9xl  xl:text-[164px]",
-        direction === "top" ? "pt-5 lg:pt-14" : "pb-5 lg:pb-14"
+        "relative inline-flex items-center text-6xl font-bold uppercase leading-none md:text-8xl lg:text-9xl xl:text-[164px]",
+        direction === "top" ? "pt-5 md:pt-14" : "pb-5 md:pb-14"
       )}
     >
       <div
         className={cn(
-          "absolute left-0 inline-flex h-3 overflow-hidden text-neutral-500/10",
-          direction === "top" ? "top-0 align-text-top" : "bottom-0 items-end"
+          "absolute left-0 flex h-1 overflow-hidden text-neutral-500/10 md:h-3",
+          direction === "top"
+            ? "top-0 items-start align-text-top"
+            : "bottom-0 items-end"
         )}
       >
         <span className="-mb-12 ">{text}</span>
       </div>
       <div
         className={cn(
-          "absolute left-0 inline-flex h-4 overflow-hidden text-neutral-500/20",
-          direction === "top" ? "top-4 align-text-top" : "bottom-4 items-end"
+          "absolute left-0 flex h-2 overflow-hidden text-neutral-500/20 md:h-4",
+          direction === "top"
+            ? "top-2 items-start align-text-top md:top-4"
+            : "bottom-2 items-end md:bottom-4"
         )}
       >
         <span className="-mb-12 ">{text}</span>
       </div>
       <div
         className={cn(
-          "absolute left-0 inline-flex h-5 overflow-hidden text-neutral-500/30",
-          direction === "top" ? "top-9 align-text-top" : "bottom-9 items-end"
+          "absolute left-0 flex h-3 overflow-hidden text-neutral-500/30 md:h-5",
+          direction === "top"
+            ? "top-5 items-start align-text-top md:top-9"
+            : "bottom-5 items-end md:bottom-9"
         )}
       >
         <span className="-mb-12 ">{text}</span>
       </div>
-      <p className="lg:-mb-10">{text}</p>
+      <p className="md:-mb-8 lg:-mb-10">{text}</p>
     </div>
   )
 }
