@@ -38,7 +38,6 @@ export default function Home() {
       <div className="container my-6">
         <MissionStatement />
       </div>
-
       <AwardCards />
     </main>
   )
