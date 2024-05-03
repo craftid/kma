@@ -1,10 +1,14 @@
-const Ampercent = (props: Readonly<{ className?: string }>) => {
+import React, { type SVGProps } from "react"
+
+// return jsx for ampersand svg
+const Ampersand = (props: SVGProps<SVGSVGElement>): React.ReactElement => {
   return (
     <svg
-      width="42"
-      height="49"
-      viewBox="0 0 42 49"
+      viewBox="0 0 45 51"
       fill="none"
+      ref={props.ref}
+      width={42}
+      height={49}
       {...props}
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -29,4 +33,4 @@ const Ampercent = (props: Readonly<{ className?: string }>) => {
   )
 }
 
-export default Ampercent
+export default Ampersand

@@ -77,15 +77,15 @@ export default function Hero() {
           </filter>
         </motion.svg>
       </div>
-      <div className="container relative z-10 max-w-screen-xl py-28">
+      <div className="container relative z-10 flex max-w-screen-xl flex-col items-center justify-center py-14 lg:py-28">
         <div className="flex items-center justify-center">
           <div className="flex flex-col">
             <div className="flex">
               <DecorativeText text="Strategy" direction="top" />
-              <div className="flex flex-grow-0  basis-72 items-end">
+              <div className="hidden flex-grow-0 basis-72  items-end md:flex">
                 <Button
                   className={cn(
-                    "relative z-10 -mb-4 flex h-36 w-36 flex-col rounded-full border border-orange-500 uppercase hover:border-orange-600 xl:-mb-4"
+                    "relative z-10 -mb-4 flex h-20 w-20 flex-col rounded-full border  border-orange-500 text-sm uppercase hover:border-orange-600 md:h-36 md:w-36 xl:-mb-4"
                   )}
                   type="button"
                   variant="glass"
@@ -95,9 +95,10 @@ export default function Hero() {
                 </Button>
               </div>
             </div>
-            <div className="flex">
+            <div className="flex flex-col md:flex-row-reverse">
+              <DecorativeText text="Redefined" direction="bottom" />
               <div className="flex-grow-0 basis-72">
-                <p className="mt-4 text-xl font-medium uppercase text-neutral-500">
+                <p className="mt-4 font-medium uppercase text-neutral-500 lg:text-xl">
                   From experiential events to creative excellence,{" "}
                   <span className="text-orange-500">
                     our strategic approach
@@ -105,7 +106,6 @@ export default function Hero() {
                   leads to winning results all achieved in a collaborative way
                 </p>
               </div>
-              <DecorativeText text="Redefined" direction="bottom" />
             </div>
           </div>
         </div>
@@ -124,8 +124,8 @@ const DecorativeText = ({
   return (
     <div
       className={cn(
-        "relative inline-flex items-center font-bold uppercase leading-none lg:text-9xl  xl:text-[164px]",
-        direction === "top" ? "pt-14" : "pb-14"
+        "relative inline-flex items-center text-4xl font-bold uppercase leading-none lg:text-9xl  xl:text-[164px]",
+        direction === "top" ? "pt-5 lg:pt-14" : "pb-5 lg:pb-14"
       )}
     >
       <div

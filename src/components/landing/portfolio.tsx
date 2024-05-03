@@ -1,6 +1,7 @@
 "use client"
 
 import { forwardRef, RefObject, useRef, type HTMLAttributes } from "react"
+import Image from "next/image"
 import Link from "next/link"
 import { motion, useInView } from "framer-motion"
 import { MoveUpRight } from "lucide-react"
@@ -48,54 +49,53 @@ export default function Portfolio(props: { children?: React.ReactNode }) {
       <div className="py-6">
         <h2 className="text-5xl font-bold uppercase">our portfolio</h2>
       </div>
-      <div className="flex border-t border-neutral-300">
-        <div className="basis-1/4 p-4 md:min-w-80">
-          <div className="flex flex-col gap-4">
-            <ul className="flex flex-col gap-2">
-              <li>
-                <Link
-                  className="font-bold uppercase text-neutral-400 hover:text-orange-500"
-                  href="/portfolio"
-                >
-                  All
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="font-bold uppercase text-neutral-400 hover:text-orange-500"
-                  href="/portfolio"
-                >
-                  Branding
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="font-bold uppercase text-neutral-400 hover:text-orange-500"
-                  href="/portfolio"
-                >
-                  Design
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="font-bold uppercase text-neutral-400 hover:text-orange-500"
-                  href="/portfolio"
-                >
-                  Development
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="font-bold uppercase text-neutral-400 hover:text-orange-500"
-                  href="/portfolio"
-                >
-                  Marketing
-                </Link>
-              </li>
-            </ul>
-          </div>
+
+      <div className="flex flex-col border-t border-neutral-300 lg:flex-row ">
+        <div className="w-full p-4 lg:w-1/5">
+          <ul className="flex flex-col gap-2">
+            <li>
+              <Link
+                className="font-bold uppercase text-neutral-400 hover:text-orange-500"
+                href="#"
+              >
+                All
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="font-bold uppercase text-neutral-400 hover:text-orange-500"
+                href="#"
+              >
+                Branding
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="font-bold uppercase text-neutral-400 hover:text-orange-500"
+                href="#"
+              >
+                Design
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="font-bold uppercase text-neutral-400 hover:text-orange-500"
+                href="#"
+              >
+                Development
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="font-bold uppercase text-neutral-400 hover:text-orange-500"
+                href="#"
+              >
+                Marketing
+              </Link>
+            </li>
+          </ul>
         </div>
-        <div className="flex-grow">
+        <div className="w-full lg:w-4/5">
           {portfolioItems.map((item, index) => (
             <Item ref={ref} key={index} index={index} item={item} />
           ))}
@@ -123,7 +123,6 @@ const Item = forwardRef<HTMLDivElement, ItemProps>(
 
     const inViewRef = useRef(null)
     const isInView = useInView(inViewRef as RefObject<Element>, {
-      margin: "-30%",
       once: true,
     })
 
@@ -133,7 +132,7 @@ const Item = forwardRef<HTMLDivElement, ItemProps>(
         ref={ref}
         className={cn(
           index % 2 === 0 ? "flex-row" : "flex-row-reverse",
-          "group flex divide-x divide-neutral-300 border-b border-neutral-300"
+          "group flex flex-col divide-x divide-neutral-300 border-b border-neutral-300 md:flex-row"
         )}
       >
         <motion.div
@@ -145,7 +144,7 @@ const Item = forwardRef<HTMLDivElement, ItemProps>(
           transition={{ duration: 0.5 }}
           className="basis-1/2 p-6"
         >
-          <img src={item.imgUrl} alt={item.title} />
+          <Image width={440} height={495} src={item.imgUrl} alt={item.title} />
         </motion.div>
         <motion.div
           key={index + item.title}

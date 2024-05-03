@@ -21,7 +21,7 @@ export default function Footer(
     >
       <Marquee baseVelocity={1.2} className="-mb-12">
         <div className="flex whitespace-nowrap">
-          <span className="inline-block whitespace-nowrap align-bottom text-[10rem] font-extrabold  uppercase leading-none">
+          <span className="inline-block whitespace-nowrap align-bottom text-7xl font-extrabold uppercase  leading-none lg:text-[10rem]">
             Keep in touch
           </span>
           <div className="self-center">
