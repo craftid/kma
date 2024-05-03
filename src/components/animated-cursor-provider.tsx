@@ -90,8 +90,8 @@ const Cursor = ({ children }: AnimatedCursorProviderProps) => {
 
   const variants = {
     default: {
-      x: mouseXPosition,
-      y: mouseYPosition,
+      x: mouseXPosition - 4,
+      y: mouseYPosition - 4,
       scale: 1,
       borderWidth: "0px",
     },
