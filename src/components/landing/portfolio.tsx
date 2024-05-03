@@ -131,8 +131,8 @@ const Item = forwardRef<HTMLDivElement, ItemProps>(
         {...props}
         ref={ref}
         className={cn(
-          index % 2 === 0 ? "flex-row" : "flex-row-reverse",
-          "group flex flex-col divide-x divide-neutral-300 border-b border-neutral-300 md:flex-row"
+          index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse",
+          "group flex flex-col divide-x divide-neutral-300 border-b border-neutral-300"
         )}
       >
         <motion.div

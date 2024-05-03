@@ -37,10 +37,10 @@ export default function Home() {
       <div className="container" id="portfolio">
         <Portfolio />
       </div>
-      <div className="container my-6" id="mission">
+      <div className="container my-14" id="mission">
         <MissionStatement />
       </div>
-      <div className="container" id="awards">
+      <div className="w-full" id="awards">
         <AwardCards />
       </div>
     </main>

@@ -18,20 +18,20 @@ export default function NumberedCarouselItem(props: {
   const ref = useRef<HTMLDivElement>(null)
   const firstUpdate = useRef(true)
 
-  useEffect(() => {
-    if (firstUpdate.current) {
-      firstUpdate.current = false
-      return
-    }
-    if (ref.current && !props.collapsed && typeof window !== "undefined") {
-      setTimeout(() => {
-        ref.current?.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-        })
-      }, 300)
-    }
-  })
+  // useEffect(() => {
+  //   if (firstUpdate.current) {
+  //     firstUpdate.current = false
+  //     return
+  //   }
+  //   if (ref.current && !props.collapsed && typeof window !== "undefined") {
+  //     setTimeout(() => {
+  //       ref.current?.scrollIntoView({
+  //         behavior: "smooth",
+  //         block: "center",
+  //       })
+  //     }, 300)
+  //   }
+  // })
 
   return (
     <div

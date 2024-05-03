@@ -4,6 +4,8 @@ import { useRef, type RefObject } from "react"
 import Image from "next/image"
 import { motion, useInView } from "framer-motion"
 
+import { cn } from "@/lib/utils"
+
 const OurClients = () => {
   const inViewRef = useRef(null)
   const isInView = useInView(inViewRef as RefObject<Element>, {
@@ -21,16 +23,11 @@ const OurClients = () => {
         Our Clients
       </motion.h2>
       <div className="container">
-        <div
-          className="grid w-full grid-cols-2
-        divide-x divide-y
-        divide-neutral-300
-        md:grid-cols-3 lg:grid-cols-5"
-        >
+        <div className="grid w-full grid-cols-2 [clip-path:inset(2px_0_0_2px)] *:border-l *:border-t *:border-gray-300 md:grid-cols-3 lg:grid-cols-5">
           {Array.from({ length: 10 }, (_, index) => index + 1).map((i) => (
             <motion.div
               key={i}
-              className="flex items-center justify-center"
+              className={cn("flex items-center justify-center ")}
               initial={{ opacity: 0 }}
               animate={{ opacity: isInView ? 1 : 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
