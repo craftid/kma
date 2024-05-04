@@ -8,8 +8,8 @@ import { Button } from "../ui/button"
 export default function AwardCards(props: { children?: React.ReactNode }) {
   return (
     <div className="relative my-14 flex flex-col overflow-hidden">
-      <div className="pointer-events-auto absolute inset-0 flex flex-col justify-between gap-6 py-6">
-        <Marquee baseVelocity={0.8} className="h-40">
+      <div className="pointer-events-auto absolute inset-0 flex flex-col justify-around gap-6 py-6">
+        <Marquee baseVelocity={0.8}>
           <div className="flex gap-4 px-4">
             <h2 className="text-5xl font-bold uppercase text-neutral-200">
               our awards
@@ -19,7 +19,7 @@ export default function AwardCards(props: { children?: React.ReactNode }) {
             </h2>
           </div>
         </Marquee>
-        <Marquee baseVelocity={-0.8} className="h-40">
+        <Marquee baseVelocity={-0.8}>
           <div className="flex gap-4 px-4">
             <h2 className="text-5xl font-bold uppercase text-neutral-200">
               our awards
@@ -29,7 +29,7 @@ export default function AwardCards(props: { children?: React.ReactNode }) {
             </h2>
           </div>
         </Marquee>
-        <Marquee baseVelocity={0.8} className="h-40">
+        <Marquee baseVelocity={0.8}>
           <div className="flex gap-4 px-4">
             <h2 className="text-5xl font-bold uppercase text-neutral-200">
               our awards
@@ -72,7 +72,7 @@ export default function AwardCards(props: { children?: React.ReactNode }) {
           ].map((i, index) => (
             <div
               key={index}
-              className="px6 flex flex-col items-center justify-between rounded-lg bg-stone-100 px-4 py-7 text-center"
+              className="flex flex-col items-center justify-between rounded-lg bg-stone-100 px-4 py-7 text-center md:px-8 md:py-14"
             >
               <div>
                 <h3 className="pb-6 text-2xl font-bold text-zinc-900">

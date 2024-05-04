@@ -13,7 +13,11 @@ const OurClients = () => {
     once: true,
   })
   return (
-    <section ref={inViewRef} id="our-clients" className="our-clients py-16">
+    <section
+      ref={inViewRef}
+      id="our-clients"
+      className="our-clients flex min-h-[80vh] flex-col items-center justify-center"
+    >
       <motion.h2
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 100 }}
