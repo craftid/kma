@@ -3,7 +3,7 @@
 import { forwardRef, HTMLAttributes, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { HamIcon, Menu } from "lucide-react"
+import { Menu } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import useEvent from "@/hooks/useEvent"
@@ -16,16 +16,7 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { useCursor } from "@/components/animated-cursor-provider"
 
 import ScrollTo from "./ui/scrollTo"

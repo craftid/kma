@@ -74,7 +74,7 @@ const puntaFlat = localFont({
 
 export const metadata: Metadata = {
   title: "KM&A Landing page",
-  description: "using nextjs, tailwindcss, framer-motion, and more",
+  description: "using Next.js, tailwindcss, framer-motion, and more",
 }
 
 export default function RootLayout({
@@ -87,7 +87,7 @@ export default function RootLayout({
       <body
         className={cn(
           poppins.variable,
-          punta.variable,
+          punta.className,
           puntaFlat.variable,
           "min-h-screen bg-gradient-to-b from-zinc-200 to-white"
         )}
