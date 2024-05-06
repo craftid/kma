@@ -119,7 +119,7 @@ const Header = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
                   {navItems.map(({ label, href, scrollTo }) => (
                     <li key={href}>
                       <ScrollTo
-                        elementId={scrollTo}
+                        elementId={label}
                         variant="link"
                         className={cn(
                           navigationMenuTriggerStyle(),
