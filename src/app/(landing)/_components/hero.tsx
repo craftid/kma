@@ -50,7 +50,7 @@ export default function Hero() {
             transform="translate(100 100)"
           />
           <defs>
-            <linearGradient id="gradient" x1="0" x2="1" y1="1" y2="0">
+            <linearGradient id="gradient">
               <stop offset="0%" stopColor="hsla(264, 100%, 95%, 1)"></stop>
               <stop offset="30%" stopColor="hsla(24, 93%, 73%, 1)"></stop>
               <stop offset="67%" stopColor="hsla(8, 73%, 60%, 1)"></stop>
@@ -82,26 +82,27 @@ export default function Hero() {
           <div className="flex flex-col">
             <div className="flex">
               <DecorativeText text="Strategy" direction="top" />
-              <div className="hidden flex-grow-0 items-end  md:flex md:basis-72">
+              <div className="hidden grow items-end justify-center  md:flex ">
                 <Button
                   className={cn(
-                    "relative z-10 -mb-4 flex h-20 w-20 flex-col rounded-full border  border-orange-500 text-sm uppercase hover:border-orange-600 md:h-36 md:w-36 xl:-mb-4"
+                    "relative z-10 -mb-4 flex h-20 w-20 flex-col rounded-full border border-orange-500 text-sm  uppercase hover:border-orange-600 md:h-36 md:w-36 xl:-mb-4 xl:h-44 xl:w-44"
                   )}
                   type="button"
                   variant="glass"
                 >
-                  <MoveUpRight />
+                  <MoveUpRight size={48} className="h-10 w-10" />
                   <span>See HOW</span>
                 </Button>
               </div>
             </div>
-            <div className="flex flex-col md:flex-row-reverse">
+            <div className="flex flex-col md:flex-row-reverse md:justify-between">
               <DecorativeText text="Redefined" direction="bottom" />
-              <div className="flex-grow-0 md:basis-72">
-                <p className="mt-4 font-medium uppercase text-neutral-500 lg:text-xl">
+              <div className="mr-20 flex-grow-0 pt-3 md:w-80">
+                <p className="mt-4 font-medium uppercase text-neutral-500 ">
                   From experiential events to creative excellence,{" "}
                   <span className="text-orange-500">
-                    our strategic approach
+                    {" "}
+                    our strategic approach{" "}
                   </span>{" "}
                   leads to winning results all achieved in a collaborative way
                 </p>
@@ -125,12 +126,14 @@ const DecorativeText = ({
     <div
       className={cn(
         "relative inline-flex items-center text-6xl font-bold uppercase leading-none md:text-8xl lg:text-9xl xl:text-[164px]",
-        direction === "top" ? "pt-5 md:pt-14" : "pb-5 md:pb-14"
+        direction === "top"
+          ? "pt-5 md:pt-14 xl:pt-24"
+          : "pb-5 md:pb-14 xl:pb-24"
       )}
     >
       <div
         className={cn(
-          "absolute left-0 flex h-1 overflow-hidden text-neutral-500/10 md:h-3",
+          "absolute left-0 flex overflow-hidden text-neutral-400/10 md:h-3 xl:h-6",
           direction === "top"
             ? "top-0 items-start align-text-top"
             : "bottom-0 items-end"
@@ -140,20 +143,22 @@ const DecorativeText = ({
       </div>
       <div
         className={cn(
-          "absolute left-0 flex h-2 overflow-hidden text-neutral-500/20 md:h-4",
+          "absolute left-0 flex overflow-hidden text-neutral-400/20",
           direction === "top"
-            ? "top-2 items-start align-text-top md:top-4"
-            : "bottom-2 items-end md:bottom-4"
+            ? "top-2 items-start align-text-top md:top-4 xl:top-6"
+            : "bottom-2 items-end md:bottom-4 xl:bottom-6",
+          "h-2 md:h-4 xl:h-8"
         )}
       >
         <span className="-mb-12 ">{text}</span>
       </div>
       <div
         className={cn(
-          "absolute left-0 flex h-3 overflow-hidden text-neutral-500/30 md:h-5",
+          "absolute left-0 flex overflow-hidden text-neutral-400/30",
           direction === "top"
-            ? "top-5 items-start align-text-top md:top-9"
-            : "bottom-5 items-end md:bottom-9"
+            ? "top-5 items-start align-text-top md:top-9 xl:top-14"
+            : "bottom-5 items-end md:bottom-9 xl:bottom-14",
+          " h-3  md:h-5 xl:h-10"
         )}
       >
         <span className="-mb-12 ">{text}</span>

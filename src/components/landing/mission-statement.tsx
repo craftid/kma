@@ -15,7 +15,7 @@ export default function MissionStatement(props: {
           <div className="ml-2 flex-grow border-t text-neutral-400"></div>
         </div>
         <div>
-          <p className="flex text-wrap bg-gradient-to-r  from-violet-200 to-pink-200 bg-clip-text text-7xl uppercase text-transparent">
+          <div className="flex text-wrap bg-gradient-to-r  from-violet-200 to-pink-200 bg-clip-text text-7xl uppercase text-transparent">
             Guided by creative, events & marketing, we provide bold & innovative
             marketing strategies that drive our clients to achieve breakthrough
             results.
@@ -33,7 +33,7 @@ export default function MissionStatement(props: {
                 </Button>
               </div>
             </div>
-          </p>
+          </div>
         </div>
       </div>
     </div>

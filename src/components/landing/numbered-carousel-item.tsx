@@ -37,10 +37,10 @@ export default function NumberedCarouselItem(props: {
     <div
       ref={ref}
       onClick={props.onClick}
-      className="rounded-lg bg-neutral-950"
+      className="rounded-lg  bg-neutral-950 xl:p-10"
     >
       <div className={cn("p-6", props.collapsed ? "cursor-pointer" : "")}>
-        <h3 className="text-lg font-bold uppercase text-neutral-50 lg:text-2xl">
+        <h3 className="text-lg font-bold uppercase text-neutral-50 lg:text-2xl xl:text-6xl">
           {props.title}
         </h3>
       </div>
@@ -48,20 +48,23 @@ export default function NumberedCarouselItem(props: {
         initial={props.collapsed ? { height: 0 } : { height: "auto" }}
         animate={props.collapsed ? { height: 0 } : { height: "auto" }}
         transition={{ duration: 0.3 }}
-        className="space-y-4 overflow-hidden"
+        className={cn(
+          "space-y-4 overflow-hidden",
+          !props.collapsed ? " p-6" : ""
+        )}
       >
         <motion.div
           initial={props.collapsed ? { opacity: 0 } : { opacity: 1 }}
           animate={props.collapsed ? { opacity: 0 } : { opacity: 1 }}
           transition={{ delay: 0.1 }}
-          className="flex flex-col justify-between p-6 lg:flex-row"
+          className="flex flex-col justify-between border-t border-neutral-400 py-6 lg:flex-row"
         >
-          <div className="lg:basis-1/3">
+          <div className="lg:basis-2/6">
             <motion.p
               initial={props.collapsed ? { opacity: 0 } : { opacity: 1 }}
               animate={props.collapsed ? { opacity: 0 } : { opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="text-sm text-neutral-500"
+              className="text-neutral-400"
             >
               {props.description}
             </motion.p>
@@ -80,7 +83,6 @@ export default function NumberedCarouselItem(props: {
           initial={props.collapsed ? { opacity: 0 } : { opacity: 1 }}
           animate={props.collapsed ? { opacity: 0 } : { opacity: 1 }}
           transition={{ delay: 1 }}
-          className="px-6"
         >
           {props.image && (
             <Image
@@ -93,15 +95,16 @@ export default function NumberedCarouselItem(props: {
             />
           )}
         </motion.div>
-
-        <motion.div
-          initial={props.collapsed ? { opacity: 0 } : { opacity: 1 }}
-          animate={props.collapsed ? { opacity: 0 } : { opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="p-6"
-        >
-          {props.children}
-        </motion.div>
+        {props.children && (
+          <motion.div
+            initial={props.collapsed ? { opacity: 0 } : { opacity: 1 }}
+            animate={props.collapsed ? { opacity: 0 } : { opacity: 1 }}
+            transition={{ delay: 1.2 }}
+            className="p-6"
+          >
+            {props.children}
+          </motion.div>
+        )}
       </motion.div>
     </div>
   )

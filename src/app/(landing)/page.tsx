@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <main className="flex w-full flex-1  flex-col">
       <Hero />
-      <div className="relative my-8  flex w-full flex-col justify-center gap-6 overflow-hidden">
+      <div className="relative my-8 flex  w-full flex-col justify-center gap-6 overflow-hidden xl:my-32">
         <Marquee baseVelocity={1}>
           <div className="flex gap-6 text-6xl uppercase text-neutral-400">
             incentive trips <Ampersand className="h-10 w-10" /> AV management{" "}

@@ -22,11 +22,11 @@ const OurClients = () => {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 100 }}
         transition={{ duration: 0.5 }}
-        className="mb-6 text-center text-5xl font-extrabold uppercase"
+        className="mb-6 text-center text-7xl font-extrabold uppercase"
       >
         Our Clients
       </motion.h2>
-      <div className="container">
+      <div className="container my-8">
         <div className="grid w-full grid-cols-2 [clip-path:inset(2px_0_0_2px)] *:border-l *:border-t *:border-gray-300 md:grid-cols-3 lg:grid-cols-5">
           {Array.from({ length: 10 }, (_, index) => index + 1).map((i) => (
             <motion.div
