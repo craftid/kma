@@ -108,6 +108,14 @@ const Cursor = ({ children }: AnimatedCursorProviderProps) => {
       borderWidth: "1px",
       backgroundColor: "rgba(255, 255, 255, 0)",
     },
+    portfolioItem: {
+      x: currentBounds.x,
+      y: currentBounds.y,
+      width: currentBounds.width,
+      height: currentBounds.height,
+      borderWidth: "1px",
+      backgroundColor: "rgba(255, 255, 255, 0)",
+    },
   }
 
   const spring = {

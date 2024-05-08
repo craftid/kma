@@ -16,9 +16,7 @@ export default function NumberedCarouselItem(props: {
   children?: React.ReactNode
 }) {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref as RefObject<Element>, {
-    margin: "-15%",
-  })
+  const isInView = useInView(ref as RefObject<Element>)
   const firstUpdate = useRef(true)
 
   // useEffect(() => {
