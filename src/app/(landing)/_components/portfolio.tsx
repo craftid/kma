@@ -20,14 +20,6 @@ import ArrowRight from "@/components/common/arrow-right"
 
 const portfolioItems = [
   {
-    title: "Myers Ag Services Brand Refresh",
-    description:
-      "Myers Ag Services, a fully independent crop and soil consultant run by Eric Myers in Kokomo, IN, was the type of brand we had in mind when we were developing our business booster package. In fact, our phased approach service, a procedure including mapping out business priorities and goals, solidifying a strong brand image, developing strategic marketing and creating a plan to connect with target audiences, was the perfect match for Myers Ag Services.",
-    imgUrl: "/assets/portfolio/1.png",
-    url: "#",
-    category: "Branding",
-  },
-  {
     title: "Raro A Brand Build",
     description:
       "When we were presented with the opportunity to build a brand from scratch, we were thrilled to get our hands dirty. Raro, a boutique travel company specializing in personalized experiences that focus on the local’s journey, approached us to develop the framework for all their branding.",
@@ -42,6 +34,14 @@ const portfolioItems = [
     imgUrl: "/assets/portfolio/3.png",
     category: "Development",
     url: "#",
+  },
+  {
+    title: "Myers Ag Services Brand Refresh",
+    description:
+      "Myers Ag Services, a fully independent crop and soil consultant run by Eric Myers in Kokomo, IN, was the type of brand we had in mind when we were developing our business booster package. In fact, our phased approach service, a procedure including mapping out business priorities and goals, solidifying a strong brand image, developing strategic marketing and creating a plan to connect with target audiences, was the perfect match for Myers Ag Services.",
+    imgUrl: "/assets/portfolio/1.png",
+    url: "#",
+    category: "Branding",
   },
   {
     title: "Google Ads Joe’s Butcher Shop",
