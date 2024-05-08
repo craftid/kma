@@ -1,8 +1,9 @@
 "use client"
 
-import { forwardRef, HTMLAttributes, useRef } from "react"
+import { forwardRef, HTMLAttributes, RefObject, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { motion, useInView } from "framer-motion"
 import { Menu } from "lucide-react"
 
 import { cn } from "@/lib/utils"
@@ -33,6 +34,9 @@ const Header = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ children, ...props }, ref) => {
     const logoRef = useRef(null)
 
+    const isInView = useInView(logoRef as RefObject<Element>, {
+      once: true,
+    })
     const { setCursorText, setCursorVariant } = useCursor()
 
     useEvent(logoRef, "mouseenter", () => {
@@ -47,8 +51,11 @@ const Header = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
       setCursorVariant("default")
     })
     return (
-      <header
+      <motion.header
         ref={ref}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isInView ? 1 : 0 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
         className="mx-auto flex w-full items-center justify-between px-4 py-8"
       >
         <Link href="#" ref={logoRef}>
@@ -136,7 +143,7 @@ const Header = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
             </SheetContent>
           </Sheet>
         </div>
-      </header>
+      </motion.header>
     )
   }
 )
