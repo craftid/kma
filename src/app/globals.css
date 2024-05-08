@@ -63,4 +63,16 @@
       display: block;
     }
   }
+
+  .mission-shape {
+    shape-outside: polygon(
+      63% 58%,
+      81% 56%,
+      100% 58%,
+      100% 100%,
+      0% 100%,
+      0% 100%,
+      47% 64%
+    );
+  }
 }

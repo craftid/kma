@@ -1,9 +1,10 @@
 import Ampersand from "@/components/common/ampersand"
 import Marquee from "@/components/common/marquee"
-import AwardCards from "@/components/landing/award-cards"
-import MissionStatement from "@/components/landing/mission-statement"
-import NumberedCarousel from "@/components/landing/numbered-carousel"
-import Portfolio from "@/components/landing/portfolio"
+
+import AwardCards from "@/app/(landing)/_components/award-cards"
+import MissionStatement from "@/app/(landing)/_components/mission-statement"
+import NumberedCarousel from "@/app/(landing)/_components/numbered-carousel"
+import Portfolio from "@/app/(landing)/_components/portfolio"
 
 import Hero from "./_components/hero"
 import OurClients from "./_components/our-clients"

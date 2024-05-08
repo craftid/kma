@@ -1,10 +1,12 @@
-import { Copyright, MoveUpRight, Send } from "lucide-react"
+import Link from "next/link"
+import { Copyright, Minus, Send } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
 import { Button } from "@/components/ui/button"
 import ScrollToTop from "@/components/ui/scroll-to-top"
 
+import ArrowRight from "./common/arrow-right"
 import Marquee from "./common/marquee"
 
 export default function Footer(
@@ -20,19 +22,20 @@ export default function Footer(
       )}
     >
       <Marquee baseVelocity={1.2} className="-mb-12">
-        <div className="flex whitespace-nowrap">
+        <div className="flex whitespace-nowrap xl:pt-10">
           <span className="inline-block whitespace-nowrap align-bottom text-7xl font-extrabold uppercase  leading-none lg:text-[10rem]">
             Keep in touch
           </span>
           <div className="self-center">
             <Button
               className={cn(
-                "flex h-24 w-24 flex-col rounded-full border border-orange-500 uppercase hover:border-orange-600"
+                "flex h-24 w-24 flex-col rounded-full border border-orange-500 uppercase hover:border-orange-600 xl:-mt-8 xl:h-40 xl:w-40"
               )}
               type="button"
               variant="glass"
             >
-              <MoveUpRight />
+              <ArrowRight className="h-10 w-10" />
+
               <span>Let&apos;s Talk</span>
             </Button>
           </div>
@@ -52,7 +55,7 @@ export default function Footer(
               <div className="mt-6 flex items-center justify-between">
                 <p className="text-neutral-400">Can we have your email?</p>
                 <Button
-                  className={cn("ml-4 rounded-full text-primary")}
+                  className={cn("ml-4 rounded-full text-orange-700")}
                   type="button"
                   variant="ghost"
                   size="icon"
@@ -72,6 +75,65 @@ export default function Footer(
                 address="1646 W Snow Avenue | #206 Tampa, FL 33606"
                 phone="317.964.0648"
               />
+            </div>
+          </div>
+          <div className="grid gap-28 lg:grid-cols-2 ">
+            <div className="grid gap-28 lg:grid-cols-2 ">
+              <ul className="my-10 flex flex-col gap-4">
+                <li>
+                  <Link href="#" className="flex gap-4 text-neutral-400">
+                    <Minus className="stroke-orange-700" /> Services
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="flex gap-4 text-neutral-400">
+                    <Minus className="stroke-orange-700" /> Work
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="flex gap-4 text-neutral-400">
+                    <Minus className="stroke-orange-700" /> Blog
+                  </Link>
+                </li>
+              </ul>
+              <ul className="my-10 flex flex-col gap-4">
+                <li>
+                  <Link href="#" className="flex gap-4 text-neutral-400">
+                    <Minus className="stroke-orange-700" /> Careers
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="flex gap-4 text-neutral-400">
+                    <Minus className="stroke-orange-700" /> Chat
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div className="grid gap-28 lg:grid-cols-2 ">
+              <ul className="my-10 flex flex-col gap-4">
+                <li>
+                  <Link href="#" className="flex gap-4 text-neutral-400">
+                    <Minus className="stroke-orange-700" /> Facebook
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="flex gap-4 text-neutral-400">
+                    <Minus className="stroke-orange-700" /> Twitter
+                  </Link>
+                </li>
+              </ul>
+              <ul className="my-10 flex flex-col gap-4">
+                <li>
+                  <Link href="#" className="flex gap-4 text-neutral-400">
+                    <Minus className="stroke-orange-700" /> Linkedin
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="flex gap-4 text-neutral-400">
+                    <Minus className="stroke-orange-700" /> Instagram
+                  </Link>
+                </li>
+              </ul>
             </div>
           </div>
           <div className="flex pb-8 pt-24">

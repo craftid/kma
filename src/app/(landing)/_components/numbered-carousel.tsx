@@ -3,7 +3,8 @@
 import { useState } from "react"
 import { ArrowUpRight } from "lucide-react"
 
-import { Button } from "../ui/button"
+import { Button } from "@/components/ui/button"
+
 import NumberedCarouselItem from "./numbered-carousel-item"
 
 const carouselItems = [
@@ -58,7 +59,7 @@ export default function NumberedCarousel() {
           </span>
         </div>
       </div>
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-[1]">
         {carouselItems.map((item, index) => (
           <NumberedCarouselItem
             collapsed={activeIndex !== index}

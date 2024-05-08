@@ -2,8 +2,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { MoveUpRight } from "lucide-react"
 
-import Marquee from "../common/marquee"
-import { Button } from "../ui/button"
+import { Button } from "@/components/ui/button"
+import Marquee from "@/components/common/marquee"
 
 export default function AwardCards(props: { children?: React.ReactNode }) {
   return (

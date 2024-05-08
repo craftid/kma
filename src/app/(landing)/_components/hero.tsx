@@ -1,11 +1,11 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { MoveUpRight } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
 import { Button } from "@/components/ui/button"
+import ArrowRight from "@/components/common/arrow-right"
 
 export default function Hero() {
   return (
@@ -90,7 +90,7 @@ export default function Hero() {
                   type="button"
                   variant="glass"
                 >
-                  <MoveUpRight size={48} className="h-10 w-10" />
+                  <ArrowRight className="h-10 w-10" />
                   <span>See HOW</span>
                 </Button>
               </div>

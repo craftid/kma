@@ -4,12 +4,12 @@ import { forwardRef, RefObject, useRef, type HTMLAttributes } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion, useInView } from "framer-motion"
-import { MoveUpRight } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
-import { useCursor } from "../animated-cursor-provider"
-import { Button } from "../ui/button"
+import { Button } from "@/components/ui/button"
+import { useCursor } from "@/components/animated-cursor-provider"
+import ArrowRight from "@/components/common/arrow-right"
 
 const portfolioItems = [
   {
@@ -47,53 +47,71 @@ export default function Portfolio(props: { children?: React.ReactNode }) {
   return (
     <div className="flex flex-col">
       <div className="py-6">
-        <h2 className="text-5xl font-bold uppercase">our portfolio</h2>
+        <h2 className="text-5xl font-bold uppercase xl:text-7xl">
+          our portfolio
+        </h2>
       </div>
 
       <div className="flex flex-col border-t border-neutral-300 lg:flex-row ">
-        <div className="w-full p-4 lg:w-1/5">
-          <ul className="flex flex-col gap-2">
+        <div className="w-full p-6  lg:w-2/6 lg:p-8">
+          <ul className="mb-14 flex flex-col gap-4 p-6">
             <li>
               <Link
-                className="font-bold uppercase text-neutral-400 hover:text-orange-500"
+                className="text-lg font-extrabold uppercase text-orange-500"
                 href="#"
+                onClick={(e) => e.preventDefault()}
               >
                 All
               </Link>
             </li>
             <li>
               <Link
-                className="font-bold uppercase text-neutral-400 hover:text-orange-500"
+                className="font-bold uppercase text-neutral-400/50 transition-all duration-300 hover:text-orange-500"
                 href="#"
+                onClick={(e) => e.preventDefault()}
               >
                 Branding
               </Link>
             </li>
             <li>
               <Link
-                className="font-bold uppercase text-neutral-400 hover:text-orange-500"
+                className="font-bold uppercase text-neutral-400/50 transition-all duration-300 hover:text-orange-500"
                 href="#"
+                onClick={(e) => e.preventDefault()}
               >
                 Design
               </Link>
             </li>
             <li>
               <Link
-                className="font-bold uppercase text-neutral-400 hover:text-orange-500"
+                className="font-bold uppercase text-neutral-400/50 transition-all duration-300 hover:text-orange-500"
                 href="#"
+                onClick={(e) => e.preventDefault()}
               >
                 Development
               </Link>
             </li>
             <li>
               <Link
-                className="font-bold uppercase text-neutral-400 hover:text-orange-500"
+                className="font-bold uppercase text-neutral-400/50 transition-all duration-300 hover:text-orange-500"
                 href="#"
+                onClick={(e) => e.preventDefault()}
               >
                 Marketing
               </Link>
             </li>
           </ul>
+
+          <Button
+            className={cn(
+              "flex h-24 w-24 flex-col rounded-full border border-orange-500 uppercase hover:border-orange-600 2xl:h-36 2xl:w-36"
+            )}
+            type="button"
+            variant="glass"
+          >
+            <ArrowRight className="h-8 w-8" />
+            <span>Let&apos;s Talk</span>
+          </Button>
         </div>
         <div className="w-full lg:w-4/5">
           {portfolioItems.map((item, index) => (
@@ -131,7 +149,7 @@ const Item = forwardRef<HTMLDivElement, ItemProps>(
         {...props}
         ref={ref}
         className={cn(
-          index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse",
+          index % 2 === 0 ? "md:flex-row-reverse" : "md:flex-row",
           "group flex flex-col divide-x divide-neutral-300 border-b border-neutral-300"
         )}
       >
@@ -149,7 +167,7 @@ const Item = forwardRef<HTMLDivElement, ItemProps>(
         <motion.div
           key={index + item.title}
           ref={inViewRef}
-          className="flex basis-1/2 flex-col justify-between p-6"
+          className="flex basis-1/2 flex-col justify-between px-8 lg:py-16"
         >
           <div className="flex">
             <div className="flex flex-grow flex-col">
@@ -158,9 +176,9 @@ const Item = forwardRef<HTMLDivElement, ItemProps>(
                 initial={{ opacity: 0 }}
                 animate={{ opacity: isInView ? 1 : 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="max-w-72 "
+                className="max-w-72"
               >
-                <h3 className="text-2xl font-extrabold uppercase">
+                <h3 className="text-3xl font-extrabold uppercase">
                   {item.title}
                 </h3>
               </motion.div>
@@ -191,7 +209,7 @@ const Item = forwardRef<HTMLDivElement, ItemProps>(
                   href={item.url}
                   className="flex h-14 w-14 items-center gap-2 transition-transform duration-300 hover:rotate-45 hover:bg-transparent hover:text-primary"
                 >
-                  <MoveUpRight size={34} />
+                  <ArrowRight className="h-12 w-12" />
                 </Link>
               </Button>
             </motion.div>
