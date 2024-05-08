@@ -1,6 +1,7 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { RefObject, useRef } from "react"
+import { motion, useInView } from "framer-motion"
 
 import { cn } from "@/lib/utils"
 
@@ -8,8 +9,10 @@ import { Button } from "@/components/ui/button"
 import ArrowRight from "@/components/common/arrow-right"
 
 export default function Hero() {
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref as RefObject<Element>)
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative overflow-hidden" ref={ref}>
       <div
         className={cn(
           "absolute z-0 h-full w-full object-cover",
@@ -80,9 +83,19 @@ export default function Hero() {
       <div className="container relative z-10 flex max-w-screen-xl flex-col items-center justify-center py-8 md:py-28">
         <div className="flex items-center justify-center">
           <div className="flex flex-col">
-            <div className="flex">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isInView ? 1 : 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="flex"
+            >
               <DecorativeText text="Strategy" direction="top" />
-              <div className="hidden grow items-end justify-center  md:flex ">
+              <motion.div
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 100 }}
+                transition={{ duration: 0.5, delay: 1.5 }}
+                className="hidden grow items-end justify-center  md:flex "
+              >
                 <Button
                   className={cn(
                     "relative z-10 -mb-4 flex h-20 w-20 flex-col rounded-full border border-orange-500 text-sm  uppercase hover:border-orange-600 md:h-36 md:w-36 xl:-mb-4 xl:h-44 xl:w-44"
@@ -93,11 +106,21 @@ export default function Hero() {
                   <ArrowRight className="h-10 w-10" />
                   <span>See HOW</span>
                 </Button>
-              </div>
-            </div>
-            <div className="flex flex-col md:flex-row-reverse md:justify-between">
+              </motion.div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isInView ? 1 : 0 }}
+              transition={{ duration: 0.5, delay: 1 }}
+              className="flex flex-col md:flex-row-reverse md:justify-between"
+            >
               <DecorativeText text="Redefined" direction="bottom" />
-              <div className="mr-20 flex-grow-0 pt-3 md:w-80">
+              <motion.div
+                initial={{ opacity: 0, x: -100 }}
+                animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -100 }}
+                transition={{ duration: 0.5, delay: 2 }}
+                className="mr-20 flex-grow-0 pt-3 md:w-80"
+              >
                 <p className="mt-4 font-medium uppercase text-neutral-500 ">
                   From experiential events to creative excellence,{" "}
                   <span className="text-orange-500">
@@ -106,8 +129,8 @@ export default function Hero() {
                   </span>{" "}
                   leads to winning results all achieved in a collaborative way
                 </p>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </div>

@@ -27,23 +27,9 @@ const OurClients = () => {
         Our Clients
       </motion.h2>
       <div className="container my-8">
-        <div className="grid w-full grid-cols-2 [clip-path:inset(2px_0_0_2px)] *:border-l *:border-t *:border-gray-300 md:grid-cols-3 lg:grid-cols-5">
+        <div className="grid w-full grid-cols-2 [clip-path:inset(2px_0_0_2px)] *:border-l *:border-t *:border-gray-400/50 md:grid-cols-3 lg:grid-cols-5">
           {Array.from({ length: 10 }, (_, index) => index + 1).map((i) => (
-            <motion.div
-              key={i}
-              className={cn("flex items-center justify-center ")}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: isInView ? 1 : 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              <Image
-                src={`/assets/clients/client-${i}.png`}
-                alt="client"
-                width={163}
-                className="h-auto w-36"
-                height={163}
-              />
-            </motion.div>
+            <ClientLogo key={i} i={i} />
           ))}
         </div>
       </div>
@@ -53,3 +39,27 @@ const OurClients = () => {
 OurClients.displayName = "OurClients"
 
 export default OurClients
+
+const ClientLogo = ({ i }: { i: number }) => {
+  const inViewRef = useRef(null)
+  const isInView = useInView(inViewRef as RefObject<Element>, {
+    margin: "-15%",
+  })
+  return (
+    <motion.div
+      ref={inViewRef}
+      className={cn("flex items-center justify-center p-5 ")}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: isInView ? 1 : 0 }}
+      transition={{ duration: 0.5, delay: 0.05 * i }}
+    >
+      <Image
+        src={`/assets/clients/client-${i}.png`}
+        alt="client"
+        width={163}
+        className="h-auto w-36"
+        height={163}
+      />
+    </motion.div>
+  )
+}

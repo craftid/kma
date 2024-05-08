@@ -1,8 +1,8 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { RefObject, useEffect, useRef } from "react"
 import Image from "next/image"
-import { motion } from "framer-motion"
+import { motion, useInView } from "framer-motion"
 
 import { cn } from "@/lib/utils"
 
@@ -16,6 +16,9 @@ export default function NumberedCarouselItem(props: {
   children?: React.ReactNode
 }) {
   const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref as RefObject<Element>, {
+    margin: "-15%",
+  })
   const firstUpdate = useRef(true)
 
   // useEffect(() => {
@@ -34,10 +37,13 @@ export default function NumberedCarouselItem(props: {
   // })
 
   return (
-    <div
+    <motion.div
       ref={ref}
       onClick={props.onClick}
       className="rounded-lg  bg-neutral-950 xl:p-10"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: isInView ? 1 : 0 }}
+      transition={{ duration: 0.5 }}
     >
       <div className={cn("p-6", props.collapsed ? "cursor-pointer" : "")}>
         <h3 className="text-lg font-bold uppercase text-neutral-50 lg:text-2xl xl:text-6xl">
@@ -106,6 +112,6 @@ export default function NumberedCarouselItem(props: {
           </motion.div>
         )}
       </motion.div>
-    </div>
+    </motion.div>
   )
 }
