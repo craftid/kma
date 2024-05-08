@@ -135,7 +135,7 @@ const PortfolioButton = ({
         setCursorVariant("default")
       }}
       className={cn(
-        "font-bold uppercase text-neutral-400/50 transition-all duration-300  hover:text-orange-500",
+        "font-bold uppercase text-neutral-400/50 transition-all duration-300 hover:text-orange-500",
         active === category && "pointer-events-none text-orange-500"
       )}
       onClick={changeCategory(category)}
@@ -209,7 +209,7 @@ export default function Portfolio(props: { children?: React.ReactNode }) {
 
           <Button
             className={cn(
-              "flex h-24 w-24 flex-col rounded-full border border-orange-500 uppercase hover:border-orange-600 2xl:h-36 2xl:w-36"
+              "flex h-24 w-24 flex-col rounded-full border border-orange-500 uppercase hover:border-orange-600 hover:bg-orange-500 hover:text-white 2xl:h-36 2xl:w-36"
             )}
             type="button"
             variant="glass"
@@ -314,10 +314,11 @@ const Item = forwardRef<HTMLDivElement, ItemProps>(
                   if (!setCursorVariant) return
                   setCursorVariant("default")
                 }}
+                className={cn("h-14 w-14")}
               >
                 <Link
                   href={item.url}
-                  className="flex h-14 w-14 items-center gap-2 transition-transform duration-300 hover:rotate-45 hover:bg-transparent hover:text-primary"
+                  className="flex items-center gap-2 transition-transform duration-300 hover:rotate-45 hover:bg-transparent hover:text-primary"
                 >
                   <ArrowRight className="h-12 w-12" />
                 </Link>

@@ -110,7 +110,7 @@ const Cursor = ({ children }: AnimatedCursorProviderProps) => {
     },
     portfolioItem: {
       x: currentBounds.x,
-      y: currentBounds.y,
+      y: currentBounds.y - 4,
       width: currentBounds.width,
       height: currentBounds.height,
       borderWidth: "1px",
