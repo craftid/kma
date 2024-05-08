@@ -121,7 +121,7 @@ export default function Hero() {
                 transition={{ duration: 0.5, delay: 2 }}
                 className="mr-20 flex-grow-0 pt-3 md:w-80"
               >
-                <p className="mt-4 font-medium uppercase text-neutral-500 ">
+                <p className="mt-4 font-medium uppercase text-neutral-400/60 ">
                   From experiential events to creative excellence,{" "}
                   <span className="text-orange-500">
                     {" "}
