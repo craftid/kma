@@ -73,18 +73,19 @@ const Header = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
         >
           <NavigationMenuList
             className={cn(
-              "first:*pl-0 last:*pr-0 divide-x divide-slate-300 *:px-4"
+              "first:*pl-0 last:*pr-0 divide-x divide-slate-300 lg:*:px-4 xl:*:px-6"
             )}
           >
             {navItems.map(({ label, href, scrollTo }) => (
               <NavigationMenuItem key={href}>
-                <Link href={href} legacyBehavior passHref>
+                <Link href={scrollTo} legacyBehavior passHref>
                   <NavigationMenuLink asChild>
                     <ScrollTo
                       elementId={scrollTo}
                       variant="ghost"
                       className={cn(
                         navigationMenuTriggerStyle(),
+                        "flex h-7 items-center",
                         "font-bold uppercase text-neutral-500"
                       )}
                     >
@@ -124,7 +125,7 @@ const Header = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
                 </Link>
                 <ul className={cn("first:*pt-0 last:*pb-0 grid *:py-2")}>
                   {navItems.map(({ label, href, scrollTo }) => (
-                    <li key={href}>
+                    <li key={scrollTo}>
                       <ScrollTo
                         elementId={label}
                         variant="link"
