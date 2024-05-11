@@ -77,7 +77,7 @@ const Header = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
             )}
           >
             {navItems.map(({ label, href, scrollTo }) => (
-              <NavigationMenuItem key={href}>
+              <NavigationMenuItem key={scrollTo}>
                 <Link href={scrollTo} legacyBehavior passHref>
                   <NavigationMenuLink asChild>
                     <ScrollTo
@@ -102,13 +102,18 @@ const Header = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
           <Button
             asChild
             variant="default"
+            size="lg"
             className={cn("bg-orange-500", "lg:px-8")}
           >
             <Link href="#">132-465-789</Link>
           </Button>
           <Sheet>
             <SheetTrigger className="block lg:hidden" asChild>
-              <Button variant="default" className={cn("bg-orange-500")}>
+              <Button
+                variant="default"
+                size="lg"
+                className={cn("bg-orange-500", "px-4")}
+              >
                 <Menu className="text-white" size={24} />
               </Button>
             </SheetTrigger>
