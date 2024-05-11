@@ -54,29 +54,40 @@ export default function Hero() {
           />
           <defs>
             <linearGradient id="gradient">
-              <stop offset="0%" stopColor="hsla(264, 100%, 95%, 1)"></stop>
-              <stop offset="30%" stopColor="hsla(24, 93%, 73%, 1)"></stop>
-              <stop offset="67%" stopColor="hsla(8, 73%, 60%, 1)"></stop>
-              <stop offset="100%" stopColor="hsla(265, 53%, 29%, 1)"></stop>
+              <stop offset="8%" stopColor="hsla(0, 0%, 90%, 1)"></stop>
+              <stop offset="35%" stopColor="hsla(20, 93%, 50%, 1)"></stop>
+              <stop offset="67%" stopColor="hsla(0, 72.2%, 50.6%, 1)"></stop>
+              <stop offset="90%" stopColor="hsla(281.9, 31%, 35%, 1)"></stop>
             </linearGradient>
           </defs>
           <filter id="noiseFilter">
-            <feTurbulence
+            <motion.feTurbulence
+              animate={{
+                baseFrequency: 300,
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+              }}
               type="fractalNoise"
-              baseFrequency="3"
+              baseFrequency="300"
               stitchTiles="stitch"
-            ></feTurbulence>
+            ></motion.feTurbulence>
             <feColorMatrix
               in="colorNoise"
-              type="matrix"
-              values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0"
+              type="saturate"
+              values="0 1 1 1 1 1 0 1 1 1 1 1 0 1 1 1 1 1 0 1"
             ></feColorMatrix>
             <feComposite
               operator="in"
               in2="SourceGraphic"
               result="monoNoise"
             ></feComposite>
-            <feBlend in="SourceGraphic" in2="monoNoise" mode="screen"></feBlend>
+            <feBlend
+              in="SourceGraphic"
+              in2="monoNoise"
+              mode="multiply"
+            ></feBlend>
           </filter>
         </motion.svg>
       </div>
