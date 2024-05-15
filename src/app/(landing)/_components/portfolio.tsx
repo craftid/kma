@@ -168,8 +168,8 @@ export default function Portfolio(props: { children?: React.ReactNode }) {
       </div>
 
       <div className="flex flex-col border-t border-neutral-300 lg:flex-row ">
-        <div className="w-full p-6  lg:w-2/6 lg:p-8">
-          <ul className="mb-14 flex flex-col gap-4 p-6">
+        <div className="w-full py-6  lg:w-2/6 lg:p-8">
+          <ul className="mb-14 flex flex-col gap-4 md:p-6">
             <li>
               <PortfolioButton
                 active={currentCategory}

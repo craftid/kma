@@ -41,9 +41,9 @@ export default function Footer(
           </div>
         </div>
       </Marquee>
-      <div className=" bg-zinc-950 pt-28 text-white">
+      <div className="bg-zinc-950 pt-28 text-white">
         <div className="container flex flex-col">
-          <div className="grid gap-28 lg:grid-cols-2">
+          <div className="grid gap-8 md:gap-28 lg:grid-cols-2">
             <div className="border-b border-neutral-500 pb-4">
               <h2 className="text-2xl font-extrabold uppercase">
                 Emails you’ll actually want to read
@@ -77,9 +77,9 @@ export default function Footer(
               />
             </div>
           </div>
-          <div className="grid gap-28 lg:grid-cols-2 ">
-            <div className="grid gap-28 lg:grid-cols-2 ">
-              <ul className="my-10 flex flex-col gap-4">
+          <div className="grid gap-8 md:gap-12 lg:grid-cols-2 lg:gap-28 ">
+            <div className="grid gap-8 md:gap-12 lg:grid-cols-2 lg:gap-28 ">
+              <ul className="mt-5 flex flex-col gap-4 sm:mt-10">
                 <li>
                   <Link href="#" className="flex gap-4 text-neutral-400">
                     <Minus className="stroke-orange-700" /> Services
@@ -96,7 +96,7 @@ export default function Footer(
                   </Link>
                 </li>
               </ul>
-              <ul className="my-10 flex flex-col gap-4">
+              <ul className="mt-5 flex flex-col gap-4 md:mt-10">
                 <li>
                   <Link href="#" className="flex gap-4 text-neutral-400">
                     <Minus className="stroke-orange-700" /> Careers
@@ -109,8 +109,8 @@ export default function Footer(
                 </li>
               </ul>
             </div>
-            <div className="grid gap-28 lg:grid-cols-2 ">
-              <ul className="my-10 flex flex-col gap-4">
+            <div className="grid gap-8 md:gap-12 lg:grid-cols-2 lg:gap-28 ">
+              <ul className="mt-5 flex flex-col gap-4 md:mt-10">
                 <li>
                   <Link href="#" className="flex gap-4 text-neutral-400">
                     <Minus className="stroke-orange-700" /> Facebook
@@ -122,7 +122,7 @@ export default function Footer(
                   </Link>
                 </li>
               </ul>
-              <ul className="my-10 flex flex-col gap-4">
+              <ul className="mt-5 flex flex-col gap-4 md:mt-10">
                 <li>
                   <Link href="#" className="flex gap-4 text-neutral-400">
                     <Minus className="stroke-orange-700" /> Linkedin

@@ -13,7 +13,7 @@ const carouselItems = [
     description:
       "This white paper explores the different types of social media users and provides insight on how brands can reach their target audience and created more effective marketing strategies",
     action: (
-      <Button variant="ghost" className="text-base text-zinc-50" size="lg">
+      <Button variant="ghost" className="px-0 text-base text-zinc-50" size="lg">
         Download Now <ArrowUpRight className="ml-2" size={20} />
       </Button>
     ),
@@ -24,7 +24,7 @@ const carouselItems = [
     description:
       "This white paper explores the different types of social media users and provides insight on how brands can reach their target audience and created more effective marketing strategies",
     action: (
-      <Button variant="ghost" className="text-base text-zinc-50" size="lg">
+      <Button variant="ghost" className="px-0 text-base text-zinc-50" size="lg">
         Download Now <ArrowUpRight className="ml-2" size={20} />
       </Button>
     ),
@@ -35,7 +35,7 @@ const carouselItems = [
     description:
       "This white paper explores the different types of social media users and provides insight on how brands can reach their target audience and created more effective marketing strategies",
     action: (
-      <Button variant="ghost" className="text-base text-zinc-50" size="lg">
+      <Button variant="ghost" className="px-0 text-base text-zinc-50" size="lg">
         Download Now <ArrowUpRight className="ml-2" size={20} />
       </Button>
     ),
