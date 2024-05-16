@@ -37,12 +37,12 @@ const Header = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
     const isInView = useInView(logoRef as RefObject<Element>, {
       once: true,
     })
-    const { setCursorText, setCursorVariant } = useCursor()
+    const { setCursorText, setCursorVariant, setCurrentBounds } = useCursor()
 
     useEvent(logoRef, "mouseenter", () => {
       if (!setCursorText || !setCursorVariant) return
       setCursorText("Back to home")
-      setCursorVariant("hover")
+      setCursorVariant("navHover")
     })
 
     useEvent(logoRef, "mouseleave", () => {
@@ -60,6 +60,7 @@ const Header = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
       >
         <Link href="#" ref={logoRef}>
           <Image
+            priority
             src="/assets/logo.png"
             alt="KM&A logo"
             width={158}
@@ -83,10 +84,21 @@ const Header = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
                     <ScrollTo
                       elementId={scrollTo}
                       variant="ghost"
+                      onMouseEnter={(e) => {
+                        if (!setCursorVariant || !setCurrentBounds) return
+                        setCurrentBounds(
+                          e.currentTarget.getBoundingClientRect().toJSON()
+                        )
+                        setCursorVariant("portfolioItem")
+                      }}
+                      onMouseLeave={() => {
+                        if (!setCursorVariant) return
+                        setCursorVariant("default")
+                      }}
                       className={cn(
                         navigationMenuTriggerStyle(),
                         "flex h-7 items-center",
-                        "font-bold uppercase text-neutral-500"
+                        "rounded-full font-bold uppercase text-neutral-500"
                       )}
                     >
                       {label}
