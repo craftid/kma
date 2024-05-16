@@ -3,6 +3,7 @@
 import type { PropsWithChildren } from "react"
 import { createContext, useContext, useMemo, useRef, useState } from "react"
 import { LayoutGroup, motion } from "framer-motion"
+import { Radius } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import useMouse, { initialState } from "@/hooks/useMouse"
@@ -116,6 +117,11 @@ const Cursor = ({ children }: AnimatedCursorProviderProps) => {
       borderWidth: "1px",
       backgroundColor: "rgba(255, 255, 255, 0)",
     },
+    navHover: {
+      x: currentBounds.x + 16,
+      y: currentBounds.y + currentBounds.height / 2 - 4,
+      backgroundColor: "rgb(2 132 199)",
+    },
   }
 
   const spring = {
@@ -139,7 +145,7 @@ const Cursor = ({ children }: AnimatedCursorProviderProps) => {
             animate={cursorVariant}
             className={cn(
               "pointer-events-none fixed z-[9999] hidden h-2 w-2 md:flex",
-              "border-0 border-orange-500 bg-orange-500",
+              "border-0 border-primary bg-primary",
               "text-center text-xs font-bold leading-5 text-white",
               "origin-center transform-gpu items-stretch justify-center rounded-full "
             )}
