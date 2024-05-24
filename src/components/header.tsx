@@ -58,15 +58,16 @@ const Header = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
         transition={{ duration: 0.5, delay: 0.3 }}
         className="mx-auto flex w-full items-center justify-between px-4 py-8"
       >
-        <Link href="#" ref={logoRef}>
+        <div>
           <Image
+            ref={logoRef}
             priority
             src="/assets/logo.png"
             alt="KM&A logo"
             width={158}
             height={58}
           />
-        </Link>
+        </div>
 
         <NavigationMenu
           className="hidden lg:block
